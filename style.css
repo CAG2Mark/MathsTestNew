@@ -3,12 +3,29 @@
 }
 
 body {
-    font: 64px "Computer Modern Serif", serif;
+    font: 40px "Computer Modern Serif", serif;
     user-select: none;
+
+    overflow: hidden;
 }
 
+/* dev */
+
+/*
 .slide {
+    position: relative;
+    width: 100vw;
+    display: flex !important;
+    flex-flow: column wrap;
+    align-items: center;
+}
+*/
+
+/* prod */
+.slide {
+    
     position: absolute;
+
     left: 50%;
     top: calc(50% - 32px);
     transform: translate(-50%, -50%);
@@ -20,13 +37,14 @@ body {
     display: none;
 
     width: 100vw;
+    
 }
 
 .material-icons {
     font: 48px "Material Icons" !important;
 }
 
-button {
+.round-button {
     position: absolute;
     bottom: var(--button-margin);
     width: 80px;
@@ -37,14 +55,26 @@ button {
     -moz-border-radius: 40px;
     -ms-border-radius: 40px;
     -o-border-radius: 40px;
-    
+}
+
+button {
     transition: 150ms background-color;
     -webkit-transition: 150ms background-color;
     -moz-transition: 150ms background-color;
     -ms-transition: 150ms background-color;
     -o-transition: 150ms background-color;
-
+    border-color: transparent;
     background-color: #EEEEEE;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+
+    font-family: "Computer Modern Serif", serif;
+    font-size: 48px;
+    padding: 8px;
+    margin: 8px;
 }
 
 button:hover {
@@ -65,6 +95,8 @@ button:focus {
 
 p {
     margin-bottom: 24px;
+    margin-top: 0;
+    text-align: center;
 }
 
 .slide-visible {
