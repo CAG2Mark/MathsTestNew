@@ -1,0 +1,107 @@
+:root {
+    --button-margin: 16px;
+}
+
+body {
+    font: 64px "Computer Modern Serif", serif;
+    user-select: none;
+}
+
+.slide {
+    position: absolute;
+    left: 50%;
+    top: calc(50% - 32px);
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+
+    display: none;
+
+    width: 100vw;
+}
+
+.material-icons {
+    font: 48px "Material Icons" !important;
+}
+
+button {
+    position: absolute;
+    bottom: var(--button-margin);
+    width: 80px;
+    height: 80px;
+    border-color: transparent;
+    border-radius: 40px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    -ms-border-radius: 40px;
+    -o-border-radius: 40px;
+    
+    transition: 150ms background-color;
+    -webkit-transition: 150ms background-color;
+    -moz-transition: 150ms background-color;
+    -ms-transition: 150ms background-color;
+    -o-transition: 150ms background-color;
+
+    background-color: #EEEEEE;
+}
+
+button:hover {
+    background-color: #DDDDDD;
+}
+
+button:focus {
+    outline: none;
+}
+
+#back {
+    left: var(--button-margin);
+}   
+
+#forward {
+    right: var(--button-margin);
+}
+
+p {
+    margin-bottom: 24px;
+}
+
+.slide-visible {
+    display: flex !important;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+input {
+    width: 500px;
+    padding: 8px 8px 0 8px;
+    font: 64px "Computer Modern Serif", serif;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-width: 3px;
+    border-color: #CCCCCC;
+
+    border-style: solid;
+
+    transition: 200ms border-color;
+    -webkit-transition: 200ms border-color;
+    -moz-transition: 200ms border-color;
+    -ms-transition: 200ms border-color;
+    -o-transition: 200ms border-color;
+
+    margin: 0 auto;
+
+}
+
+input:hover {
+    border-color: #BBBBBB;
+}
+
+input:focus {
+    border-color: #005cd4;
+    outline: none;
+}
