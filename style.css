@@ -2,13 +2,21 @@
     --button-margin: 16px;
 }
 
-body {
+body, html, #wrap {
     font: 40px "Computer Modern Serif", serif;
     user-select: none;
 
-    overflow: hidden;
-}
+    position: relative;
 
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    height: 100%;
+    width: 100%;
+
+    padding: 0px;
+    margin: 0px;
+}
 /* dev */
 
 /*
@@ -94,9 +102,11 @@ button:focus {
 }
 
 p {
-    margin-bottom: 24px;
-    margin-top: 0;
+    margin: 0 8px 24px 8px;
     text-align: center;
+    width: 90%;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .slide-visible {
@@ -136,4 +146,14 @@ input:hover {
 input:focus {
     border-color: #005cd4;
     outline: none;
+}
+
+@media (max-width: 600px) {
+    body, html, #wrap {
+        font: 24px "Computer Modern Serif", serif;
+    }
+    input {
+        font: 24px "Computer Modern Serif", serif;
+        width: 90%;
+    }
 }
