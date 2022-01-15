@@ -109,7 +109,7 @@ let questionsData = [
         isTutorial: false
     },
     {
-        prompt: `(Q9) Suppose that for any integer \\(a\\), the integer \\(p\\) is a multiple of \\(a^p\\). If the group \\(\\text{CKSTEM}\\)
+        prompt: `(Q9) Suppose that for any integer \\(a\\), the integer \\(a^p-a\\) is a multiple of \\(p\\). If the group \\(\\text{CKSTEM}\\)
         has order \\(p^2\\), what is the sum of the orders of the smallest and largest subgroups of \\(\\text{CKSTEM}\\), not including \\(\\text{CKSTEM}\\) itself?`,
         answerType: AnswerType.FUNCTION,
         signatureTests: [{p: 1, a: 1, G: 1}, {p: 2, a: 2, G: 2}, {p: 100, a: 10, G: 1}, {p: 0.5, a: 0.25, G: 0.125}],
