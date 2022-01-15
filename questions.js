@@ -31,14 +31,15 @@ const customFunctions = {
 math.import(customFunctions);
 
 class Question {
-    constructor(prompt, answerType, signatureTests = null, isTutorial=false) {
+    constructor(prompt, answerType, signatureTests = null, isTutorial=false, tutorialAnswer=null) {
         this.prompt = prompt;
         this.answerType = answerType;
         let node = template.cloneNode(true);
         node.removeAttribute("id");
         this.node = node;
         this.signatureTests = signatureTests;
-        this.isTutorial = false;
+        this.isTutorial = isTutorial;
+        this.tutorialAnswer = tutorialAnswer;
         
         this.promptBox = node.getElementsByClassName("question-text")[0];
         this.inputBox = node.getElementsByClassName("question-input")[0];
@@ -51,10 +52,12 @@ class Question {
 
             if (!answer) { 
                 this.answerPreview.innerHTML = "";
-                return;
+                return
             }
             if (this.answerType == AnswerType.EXACT) { 
-                this.answerPreview.innerHTML = answer; 
+                this.answerPreview.innerHTML = answer;
+                if (this.isTutorial) 
+                    this.answerPreview.innerHTML += this.checkAnswer() ? " (Correct)" : " (Incorrect)";
                 return;
             }
 
@@ -82,6 +85,8 @@ class Question {
                 } else {
                     this.answerPreview.innerHTML = `\\(${tex}\\)`
                 }
+                if (this.isTutorial) 
+                    this.answerPreview.innerHTML += this.checkAnswer() ? " (Correct)" : " (Incorrect)";
                 MathJax.typeset([this.answerPreview]);
             } catch (error) {
                 this.answerPreview.innerHTML = "(Error parsing)"
@@ -100,15 +105,32 @@ class Question {
 
     getAnswer() {
         if (this.answerType == AnswerType.FUNCTION) {
-            let f = new MathFunction(this.getAnswerInput(), this.signatureTests);
-            return f.getSignatureString();
+            let f = new MathFunction(this.getAnswerInput());
+            return f.getSignatureString(this.signatureTests);
         }
-        else if (this.answerType == AnswerType.NUMBER) {
+        if (this.answerType == AnswerType.NUMBER) {
             let val = math.evaluate(this.getAnswerInput());
             return numSigToString(numSignature(val));
         }
-        else if (this.answerType == AnswerType.EXACT) {
+        if (this.answerType == AnswerType.EXACT) {
             return this.getAnswerInput();
+        }
+    }
+
+    // tutorial only
+    checkAnswer() {
+        if (this.answerType == AnswerType.FUNCTION) {
+            let f = new MathFunction(this.getAnswerInput());
+            let g = new MathFunction(this.tutorialAnswer);
+            return f.equals(g, this.signatureTests);
+        }
+        if (this.answerType == AnswerType.NUMBER) {
+            let val1 = math.evaluate(this.getAnswerInput());
+            let val2 = math.evaluate(this.tutorialAnswer);
+            return areSameFloats(val1, val2);
+        }
+        if (this.answerType == AnswerType.EXACT) {
+            this.getAnswerInput() == this.tutorialAnswer.trim();
         }
     }
 }

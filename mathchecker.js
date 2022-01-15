@@ -1,4 +1,4 @@
-const PRECISION = 10;
+const PRECISION = 14;
 var max = Math.pow(10, PRECISION);
 
 function numSignature(x) {

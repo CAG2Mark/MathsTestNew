@@ -1,4 +1,4 @@
-const ANS_HASH = "f4b69479d871aa4407b15163a7b247354e4d7a410e74dba9206350ae99e3c435";
+const ANS_HASH = "41b42623a72c543a50600038d8c7b3e898335919af79b748b92c4b4e2ec174b3";
 
 // slides system
 window.MathJax = {
@@ -14,43 +14,47 @@ var insertLoc = document.getElementById("questions-end");
 
 var children = wrap.getElementsByClassName("slide");
 
-children[0].classList.add("slide-visible");
-
-var slide = 0;
-
 let questionsData = [
     {
         prompt: `(Tutorial #1) If you are asked to enter a number, you may answer anything
         equivalent to the correct answer and it will be accepted. For example, 
         if the answer is \\(\\frac{\\pi+e}{2}\\), then <span class="mono">(pi+e)/2</span>, 
         <span class="mono">0.5(pi+e)</span>, <span class="mono">2(pi+e)/(3+1)</span> etc. 
-        will all be accepted. Try it below.`,
+        will all be accepted. Try it below. <br>Your answers to the tutorial questions 
+        will not affect the final
+        result of this quiz/test.`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
-        isTutorial: true
+        isTutorial: true,
+        tutorialAnswer: "(pi+e)/2"
     },
     {
         prompt: `(Tutorial #2) For some questions, you may be asked to enter
         a function. For example, if the question is asking for the sum of
-        \\(0.5x^2\\) and \\(0.5x^2-1\\), you could type <span class="mono">x^2-1</span>, 
-        <span class="mono">(x-1)(x+1)</span> or <span class="mono">-1+x^2</span>. All of these will be correct.`,
+        \\(0.5x^2\\) and \\(0.5x^2-1\\), you could type <span class="mono">x^2-1</span> or
+        <span class="mono">(x-1)(x+1)</span>. All of these will be correct.
+        <br>NOTE: When entering the product of lone varables, for example \\(ab\\), 
+        please type something like <span class="mono">a*b</span>
+        instead of <span class="mono">ab</span>. Otherwise, this may cause errors.`,
         answerType: AnswerType.FUNCTION,
-        signatureTests: null,
-        isTutorial: true
+        signatureTests: [{x: 1},{x: -100},{x: 2},{x: 4.5123},{x: 7},{x: 100},{x: 0}],
+        isTutorial: true,
+        tutorialAnswer: "x^2-1",
     },
     {
         prompt: `(Tutorial #3) If mentioned explicitly, you will need to
         answer EXACTLY some text. For example, if the question instructs you to
-        answer "TRUE" if 1+1=3, otherwise "FALSE", you should type "FALSE".`,
+        answer <b>exactly</b> the most simplified form of \\(x+x\\), answer <span class="mono">2x</span>.`,
         answerType: AnswerType.EXACT,
         signatureTests: null,
-        isTutorial: true
+        isTutorial: true,
+        tutorialAnswer: "2x"
     },
     {
         prompt: `(1) \\(1-1+1-1+1-1+1+1=?\\)<br>Input the answer <b>exactly</b> (the answer will not be calculated for you).`,
         answerType: AnswerType.EXACT,
         signatureTests: null,
-        isTutorial: false
+        isTutorial: false,
     },
     {
         prompt: `(2) \\(9+10=-2+?\\)`,
@@ -59,13 +63,13 @@ let questionsData = [
         isTutorial: false
     },
     {
-        prompt: `(3) \\(\\arcsin{\\cos{\\left(\\frac{\\pi}{4}^\\circ\\right)}}=?\\) Give your answer in <b>radians.</b>`,
+        prompt: `(3) \\(\\arcsin{\\sin{\\left(\\frac{\\pi}{4}^\\circ\\right)}}=?\\) Give your answer in <b>radians.</b>`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
-        prompt: `(4) What is the ASCII code of the first letter of Obama's last name (upper case) squared?\\(\\)</b>`,
+        prompt: `(4) What is the ASCII code of the first letter of Obama's last name (upper case) <b>squared</b>?\\(\\)`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
@@ -73,7 +77,7 @@ let questionsData = [
     {
         prompt: `(5) \\(\\dv{a^x}{a} = ?\\)`,
         answerType: AnswerType.FUNCTION,
-        signatureTests: [{a: 1, x: 10}, {a: -1, x: 0.5}, {a: 0, x: -4}, {a: 3.5, x: 10.4}, {a: 4, x: 10}, {a: 0.001, x: 0.003}],
+        signatureTests: [{a: 1, x: 10}, {a: -1, x: 2}, {a: 5, x: -4}, {a: 3.5, x: 10.4}, {a: 4, x: 10}, {a: 0.001, x: 0.003}],
         isTutorial: false
     },
     {
@@ -85,7 +89,9 @@ let questionsData = [
         isTutorial: false
     },
     {
-        prompt: `(7) \\[\\lim_{N\\to\\infty}\\sum^{\\sum^N_{k=1}{\\frac{1}{k}}}_{n=\\sum^N_{k=1}\\frac{1}{2^k}}
+        prompt: `(7) \\[\\lim_{N\\to\\infty}\\sum^
+            {\\lfloor{\\sum^N_{k=1}{\\frac{1}{k}}}\\rfloor}_
+            {\\lceil{n=\\sum^N_{k=1}\\frac{1}{2^k}}\\rceil}
             \\frac{\\left[\\lim_{a\\to\\infty}\\left(1+\\frac{1}{a}\\right)^a\\right]^{n \\pi i}}{n}= ?\\]`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
@@ -97,7 +103,7 @@ let questionsData = [
             \\[\\forall \\delta > 0, \\exists L > 0,\\]
             \\[|a-?| < L \\implies |f(a)-\\varepsilon| < \\delta
             \\]
-            Enter your answer in its most simplified form.`,
+            Enter your answer <b>exactly</b> in its most simplified form.`,
         answerType: AnswerType.EXACT,
         signatureTests: null,
         isTutorial: false
@@ -164,10 +170,14 @@ let questions = [];
 
 for (let i = 0; i < questionsData.length; ++i) {
     let q = questionsData[i];
-    let question = new Question(q.prompt, q.answerType, q.signatureTests, q.isTutorial);
+    let question = new Question(q.prompt, q.answerType, q.signatureTests, q.isTutorial, q.tutorialAnswer);
     questions.push(question);
     insertLoc.insertAdjacentElement('beforebegin', question.node);
 }
+
+children[0].classList.add("slide-visible");
+
+var slide = 0;
 
 
 function transition(index) {
@@ -225,13 +235,17 @@ function getData() {
         return;
     }
     
-    for (var i = 1; i < questions; ++i) {
+    for (var i = 1; i < questions.length; ++i) {
         let q = questions[i];
         if (q.isTutorial) continue;
         val += q.getAnswer() + ";";
     }
 
     let hash = sha256(val);
+
+    console.log(hash);
+    console.log(val);
+
     if (hash == ANS_HASH) {
         let enc = code.encryptMessage(ign, val);
         document.getElementById("code-out").value = enc;

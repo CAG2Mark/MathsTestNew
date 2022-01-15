@@ -157,7 +157,7 @@ input:focus {
     outline: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     body, html, #wrap {
         font: 18px "Computer Modern Serif", serif;
     }
