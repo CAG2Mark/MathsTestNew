@@ -51,37 +51,37 @@ let questionsData = [
         tutorialAnswer: "2x"
     },
     {
-        prompt: `(1) \\(1-1+1-1+1-1+1+1=?\\)<br>Input the answer <b>exactly</b> (the answer will not be calculated for you).`,
+        prompt: `(Q1) \\(1-1+1-1+1-1+1+1=?\\)<br>Input the answer <b>exactly</b> (the answer will not be calculated for you).`,
         answerType: AnswerType.EXACT,
         signatureTests: null,
         isTutorial: false,
     },
     {
-        prompt: `(2) \\(9+10=-2+?\\)`,
+        prompt: `(Q2) \\(9+10=-2+?\\)`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
-        prompt: `(3) \\(\\arcsin{\\sin{\\left(\\frac{\\pi}{4}^\\circ\\right)}}=?\\) Give your answer in <b>radians.</b>`,
+        prompt: `(Q3) \\(\\arcsin{\\sin{\\left(\\frac{\\pi}{4}^\\circ\\right)}}=?\\) Give your answer in <b>radians.</b>`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
-        prompt: `(4) What is the ASCII code of the first letter of Obama's last name (upper case) <b>squared</b>?\\(\\)`,
+        prompt: `(Q4) What is the ASCII code of the first letter of Obama's last name (upper case) <b>squared</b>?\\(\\)`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
-        prompt: `(5) \\(\\dv{a^x}{a} = ?\\)`,
+        prompt: `(Q5) \\(\\dv{a^x}{a} = ?\\)`,
         answerType: AnswerType.FUNCTION,
         signatureTests: [{a: 1, x: 10}, {a: -1, x: 2}, {a: 5, x: -4}, {a: 3.5, x: 10.4}, {a: 4, x: 10}, {a: 0.001, x: 0.003}],
         isTutorial: false
     },
     {
-        prompt: `(6) Suppose \\(\\exists x \\in\\mathbb{R}, \\exists b \\in\\mathbb{R}, \\exists c \\in\\mathbb{R}, 
+        prompt: `(Q6) Suppose \\(\\exists x \\in\\mathbb{R}, \\exists b \\in\\mathbb{R}, \\exists c \\in\\mathbb{R}, 
             \\exists a \\in \\mathbb{R}^+\\), \\(ax^2-\\sqrt{a}b+\\frac{c}{4}=0\\) holds.
             Find an expression for the maximal value of \\(\\sqrt{a}\\) in terms of \\(x,b,c\\).`,
         answerType: AnswerType.FUNCTION,
@@ -89,7 +89,7 @@ let questionsData = [
         isTutorial: false
     },
     {
-        prompt: `(7) \\[\\lim_{N\\to\\infty}\\sum^
+        prompt: `(Q7) \\[\\lim_{N\\to\\infty}\\sum^
             {\\lfloor{\\sum^N_{k=1}{\\frac{1}{k}}}\\rfloor}_
             {\\lceil{n=\\sum^N_{k=1}\\frac{1}{2^k}}\\rceil}
             \\frac{\\left[\\lim_{a\\to\\infty}\\left(1+\\frac{1}{a}\\right)^a\\right]^{n \\pi i}}{n}= ?\\]`,
@@ -98,7 +98,7 @@ let questionsData = [
         isTutorial: false
     },
     {
-        prompt: `(8) \\[\\lim_{a\\to -x} f(a) = \\varepsilon\\]
+        prompt: `(Q8) \\[\\lim_{a\\to -x} f(a) = \\varepsilon\\]
             \\(\\iff\\) 
             \\[\\forall \\delta > 0, \\exists L > 0,\\]
             \\[|a-?| < L \\implies |f(a)-\\varepsilon| < \\delta
@@ -109,20 +109,20 @@ let questionsData = [
         isTutorial: false
     },
     {
-        prompt: `(9) Suppose that for any integer \\(a\\), the integer \\(p\\) is a multiple of \\(a^p\\). If the group \\(\\text{CKSTEM}\\)
+        prompt: `(Q9) Suppose that for any integer \\(a\\), the integer \\(p\\) is a multiple of \\(a^p\\). If the group \\(\\text{CKSTEM}\\)
         has order \\(p^2\\), what is the sum of the orders of the smallest and largest subgroups of \\(\\text{CKSTEM}\\), not including \\(\\text{CKSTEM}\\) itself?`,
         answerType: AnswerType.FUNCTION,
         signatureTests: [{p: 1, a: 1, G: 1}, {p: 2, a: 2, G: 2}, {p: 100, a: 10, G: 1}, {p: 0.5, a: 0.25, G: 0.125}],
         isTutorial: false
     },
     {
-        prompt: `(10) If \\(\\text{eon}\\,\\text{eon}-\\text{eon}=1\\), and \\(\\text{eon}>0\\), what is the value of \\(\\text{eon}\\,\\text{eon}\\)?`,
+        prompt: `(Q10) If \\(\\text{eon}\\,\\text{eon}-\\text{eon}=1\\), and \\(\\text{eon}>0\\), what is the value of \\(\\text{eon}\\,\\text{eon}\\)?`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
-        prompt: `(11) What is the radius of convergence of the Maclaurin series of 
+        prompt: `(Q11) What is the radius of convergence of the Maclaurin series of 
         \\(f(x)=\\frac{x^p}{\\sqrt[q]{a+bx^r}}\\) where 
             \\(p,q,r \\in \\mathbb{Z}^+\\), and \\(a,b \\in \\mathbb{R} - \\{0\\}\\) ?`,
         answerType: AnswerType.FUNCTION,
@@ -139,7 +139,7 @@ let questionsData = [
         isTutorial: false
     },
     {
-        prompt: `(12) UnWin is very rude and wants to strong-slap every person from a group of 8
+        prompt: `(Q12) UnWin is very rude and wants to strong-slap every person from a group of 8
         <b>at least twice</b>. He has the energy to do 30 strong-slaps. In how many ways can he 
         distribute the 30 strong-slaps? The order in which he strong-slaps does not matter.`,
         answerType: AnswerType.NUMBER,
@@ -147,7 +147,7 @@ let questionsData = [
         isTutorial: false
     },
     {
-        prompt: `(13) What is the meaning of \\(\\text{life}\\) if the following always holds true and we
+        prompt: `(Q13) What is the meaning of \\(\\text{life}\\) if the following always holds true and we
         assume "meaning" is the same as "value"?
         \\[(p<1) \\lor \\left(\\sum_{k=1}^\\infty \\frac{1}{k^\\text{life}} \\text{ converges}\\right)\\]
         \\(\\implies\\)
@@ -157,7 +157,7 @@ let questionsData = [
         isTutorial: false
     },
     {
-        prompt: `(14) How many numbers between \\(1\\) and \\(2^{\\text{The answer to life the universe and everything}}\\)
+        prompt: `(Q14) How many numbers between \\(1\\) and \\(2^{\\text{The answer to life the universe and everything}}\\)
         (according to Google's calculator, at least) are not coprime with \\(69\\) 
         (ie, they share at least one commmon factor that is not \\(1\\))?`,
         answerType: AnswerType.NUMBER,
