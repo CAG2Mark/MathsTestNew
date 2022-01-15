@@ -129,8 +129,7 @@ class Question {
             let val2 = math.evaluate(this.tutorialAnswer);
             return areSameFloats(val1, val2);
         }
-        if (this.answerType == AnswerType.EXACT) {
-            this.getAnswerInput() == this.tutorialAnswer.trim();
-        }
+
+        return this.getAnswerInput().trim() == this.tutorialAnswer.trim();
     }
 }
