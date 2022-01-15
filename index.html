@@ -9,10 +9,21 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Easy</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"> 
+
+    <title>Medium</title>
 </head>
 
 <body>
+
+    <div id="question-template" class="slide question question-template">
+        <p class="question-text">Test</p>
+        <input class="question-input" type="text">
+        <p>Your answer: <span class="question-answer-preview"></span></p>
+    </div>
 
     <div id="wrap">
 
@@ -21,80 +32,7 @@
             <input type="text">
         </div>
 
-        <div class="slide">
-            <p>Your answers should be in the most simplified form with no leading decimal places or zeros. If the answer
-                is e, type e; if the answer is \(\pi\), type pi; and so on. </p>
-            <p>All answers should be in base 10.</p>
-            <p>If an answer has a non-terminating decimal part, then you screwed up.</p>
-        </div>
-
-        <div class="slide question">
-            <p>\[1+1=\,?\]</p>
-            <input type="text">
-        </div>
-
-        <div class="slide question">
-            <p>\[9+10=\,?\]</p>
-            <input type="text">
-        </div>
-
-        <div class="slide question">
-            <p>\[\sin{69}\times\csc{69}=\,?\]</p>
-            <input type="text">
-        </div>
-
-        <div class="slide question">
-            <p>\[\pi^{\log_{\pi}{420}}=\,?\]</p>
-            <input type="text">
-        </div>
-
-        <div class="slide question">
-            <p>It is given that \(\ln{(-1)}=\phi(e)\).</p>
-            <p>If \(\forall e \in \mathbb{C}\):<br>\(\Re{(\phi(e))}=x,\,\Im{(\phi(e))}=y\),</p>
-            <p>\(\sin{x}+\sin{y}=\,?\)</p>
-            <input type="text">
-        </div>
-
-        <div class="slide question">
-            <p>If \(令^2=8今-4令今\)</p>
-            <p>\[\frac{d令}{d今}|_{(令=-1,今=1)}=\,?\]</p>
-            <input type="text">
-        </div>
-
-        <div class="slide question">
-            <p>Let \(\pi=\lim_{\epsilon\to\infty}{(1+\epsilon^{-1})^{\epsilon}}\)</p>
-            <p>\[\int_{0}^{\infty}{\pi^{-\equiv}d\equiv}=\,?\]</p>
-            <input type="text">
-        </div>
-
-        <div class="slide question">
-            <p>Let \(x=d-55.5,\,\theta\in\mathbb{N}\)</p>
-            <p>\[\int_{42}^{69}{x^{2\theta-1}\sin^2{x}\,dd}=\,?\]</p>
-            <input type="text">
-        </div>
-
-        <div class="slide question">
-            <p>\[\prod_{\LaTeX=-1000}^{1000}{(\LaTeX^2+4(\LaTeX+1))} = \,?\]</p>
-            <input type="text">
-        </div>
-
-        <div class="slide question">
-            <p>Let \(\textrm{noob}_{L+69}=\textrm{noob}_{L+68}+\textrm{noob}_{L+67}, \textrm{noob}_1 \neq
-                \textrm{noob}_2\)</p>
-            <p>If \(\textrm{Hrap}^2-\textrm{Hrap}-1=0\), where \(\textrm{Hrap}>1,\)</p>
-            <p>\[\lim_{L\to\infty}{\frac{\textrm{Hrap} \, \textrm{noob}_{L}}{\textrm{noob}_{L+1}}}=\,?\]</p>
-            <input type="text">
-        </div>
-
-        <div class="slide question">
-            <p>It is given that \(\textrm{Slap}(x)\) is continuous. If:</p>
-            <p>\[\frac{d\,\textrm{Slap}(\delta)}{d\delta} = \lim_{\textrm{YZERO} \to \textrm{fish}}
-                \frac{\textrm{Slap}(\delta + \textrm{YZERO}) - \textrm{Slap}(\delta)}{\textrm{YZERO}},\]</p>
-            <p>\[\textrm{fish} = \,?\]</p>
-            <input type="text">
-        </div>
-
-        <div class="slide">
+        <div id="questions-end" class="slide">
             <button id="get-code-button" onclick="getData()">Get Code</button>
             <input type="text" id="code-out">
         </div>
@@ -111,10 +49,12 @@
 
 <script src="jquery-3.6.0.min.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="mathjs/math.js"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 <script src="crypto.js"></script>
-
+<script src="mathchecker.js"></script>
+<script src="questions.js"></script>
 <script src="script.js"></script>
 
 </html>

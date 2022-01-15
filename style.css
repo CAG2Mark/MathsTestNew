@@ -30,6 +30,15 @@ body, html, #wrap {
 */
 
 /* prod */
+
+#question-template {
+    display: none !important;
+}
+
+.mono {
+    font: 32px 'Roboto Mono', Consolas, monospace;
+}
+
 .slide {
     
     position: absolute;
@@ -116,15 +125,15 @@ p {
 }
 
 input {
-    width: 500px;
-    padding: 8px 8px 0 8px;
-    font: 64px "Computer Modern Serif", serif;
+    width: 800px;
+    padding: 0px 8px 0 8px;
+    font: 40px "Roboto Mono", Consolas, monospace;
     border-radius: 0;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     -ms-border-radius: 0;
     -o-border-radius: 0;
-    border-width: 3px;
+    border-width: 2px;
     border-color: #CCCCCC;
 
     border-style: solid;
@@ -135,7 +144,7 @@ input {
     -ms-transition: 200ms border-color;
     -o-transition: 200ms border-color;
 
-    margin: 0 auto;
+    margin: 0 auto 8px auto;
 
 }
 
@@ -150,10 +159,14 @@ input:focus {
 
 @media (max-width: 600px) {
     body, html, #wrap {
-        font: 24px "Computer Modern Serif", serif;
+        font: 18px "Computer Modern Serif", serif;
     }
     input {
-        font: 24px "Computer Modern Serif", serif;
+        font: 18px "Roboto Mono", Consolas, monospace;
         width: 90%;
+    }
+
+    .mono {
+        font: 14px 'Roboto Mono', Consolas, monospace;
     }
 }
