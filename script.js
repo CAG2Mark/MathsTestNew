@@ -91,7 +91,7 @@ let questionsData = [
     {
         prompt: `(Q7) \\[\\lim_{N\\to\\infty}\\sum^
             {\\lfloor{\\sum^N_{k=1}{\\frac{1}{k}}}\\rfloor}_
-            {\\lceil{n=\\sum^N_{k=1}\\frac{1}{2^k}}\\rceil}
+            {{n=\\lceil\\sum^N_{k=1}\\frac{1}{2^k}}\\rceil}
             \\frac{\\left[\\lim_{a\\to\\infty}\\left(1+\\frac{1}{a}\\right)^a\\right]^{n \\pi i}}{n}= ?\\]`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
