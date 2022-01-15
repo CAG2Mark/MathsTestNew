@@ -149,7 +149,7 @@ let questionsData = [
     {
         prompt: `(Q13) What is the meaning of \\(\\text{life}\\) if the following always holds true and we
         assume "meaning" is the same as "value"?
-        \\[(p<1) \\lor \\left(\\sum_{k=1}^\\infty \\frac{1}{k^\\text{life}} \\text{ converges}\\right)\\]
+        \\[(\\text{life}<1) \\lor \\left(\\sum_{k=1}^\\infty \\frac{1}{k^\\text{life}} \\text{ converges}\\right)\\]
         \\(\\implies\\)
         \\[1+2+3+4+\\cdots=-\\frac{1}{12}\\]`,
         answerType: AnswerType.NUMBER,
