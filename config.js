@@ -10,7 +10,7 @@ var config = {
 
 function loadConfig() {
     try {
-        let val = localStorage.get("config");
+        let val = localStorage.getItem("config");
         if (!val.trim()) return;
         config = JSON.parse(val);
 
