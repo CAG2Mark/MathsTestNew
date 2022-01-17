@@ -10,7 +10,7 @@ let questionsData = [
     {
         id: "tut1",
         prompt: `(Tutorial #1) For some questions, you will have to answer
-        with a numerical value. If so, you may answer anything
+        with a numerical value. If so, you may enter anything
         equivalent to the correct answer and it will be accepted. For example, 
         if the answer is \\(\\frac{\\pi+e}{2}\\), then <span class="mono">(pi+e)/2</span>, 
         <span class="mono">0.5(pi+e)</span>, <span class="mono">2(pi+e)/(3+1)</span> etc. 
@@ -119,9 +119,10 @@ let questionsData = [
             \\[\\iff \\forall \\delta > 0, \\exists L > 0,\\]
             \\[|a-?| < L \\implies |f(a)-\\varepsilon| < \\delta
             \\]
-            Enter your answer <b>exactly</b> in its most simplified form.`,
-        answerType: AnswerType.EXACT,
-        signatureTests: null,
+            What should ? be?`,
+        answerType: AnswerType.FUNCTION,
+        signatureTests: [{"x": 1, "a": 1, "L": 2}, {"x": 1.0001, "a": 1.0001, "L": 2.0002}, {"x": 3, "a": 2, "L": 5}, 
+        {"x": -1, "a": -2, "L": 3}, {"x": 50, "a": 2, "L": 52}, {"x": 1000, "a": -1, "L": 49}],
         isTutorial: false
     },
     {

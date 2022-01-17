@@ -263,9 +263,9 @@ body.dark-mode, .dark-mode .full-page-popup, .dark-mode #top-row {
 .full-page-popup {
     z-index: 2;
     width: 100%;
-    height: calc(100% - 55px);
-    padding-top: 55px;
-    overflow: scroll;
+    height: calc(100% - 56px);
+    margin-top: 56px;
+    overflow-x: scroll;
     position: absolute;
     display: flex !important;
     justify-content: center;
@@ -273,7 +273,6 @@ body.dark-mode, .dark-mode .full-page-popup, .dark-mode #top-row {
     flex-wrap: wrap;
     opacity: 0;
     visibility: hidden;
-
 }
 
 .opacity-animate-out {
@@ -310,6 +309,10 @@ body.dark-mode, .dark-mode .full-page-popup, .dark-mode #top-row {
 }
 .popup-wrap > h2 {
     margin: 16px 0;
+}
+
+.popup-wrap::-webkit-scrollbar-track{
+    margin-top: 55px;
 }
 
 @media (max-height: 750px) {
@@ -404,6 +407,11 @@ body.dark-mode, .dark-mode .full-page-popup, .dark-mode #top-row {
         height: 36px;
         border-radius: 18px;
         padding: 4px;
+    }
+
+    .full-page-popup {
+        margin-top: 43px;
+        height: calc(100% - 43px);
     }
     
     #privacy-button {

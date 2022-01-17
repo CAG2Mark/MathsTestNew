@@ -2,11 +2,10 @@
 var darkMode = false;
 
 function load() {
-    if (Cookies.get("cookieStatus") != 2) return;
     try {
-        let cookie = Cookies.get("config");
-        if (!cookie.trim()) return;
-        config = JSON.parse(cookie);
+        let val = localStorage.getItem("config");
+        if (!val.trim()) return;
+        config = JSON.parse(val);
 
         darkMode = config.darkMode;
     }

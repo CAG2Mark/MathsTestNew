@@ -13,10 +13,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"> 
-
-    <!-- needed for dark mode loader -->
-    <script src="js.cookie.min.js"></script>
-
     <title>Harder</title>
 </head>
 
@@ -35,11 +31,15 @@
             <button aria-label="View source code" id="source-code-button" class="top-button material-icons">code</button>
         </form>
         <button aria-label="View help" id="help-button" class="top-button material-icons">help</button>
+        <!--
         <button aria-label="Manage cookie settings" id="cookies-button" class="top-button material-icons">cookie</button>
+        -->
         <button aria-label="View privacy Information" id="privacy-button" class="top-button">Privacy</button>
         <button aria-label="Toggle dark mode" id="dark-mode-button" class="top-button material-icons">brightness_4</button>
     </div> 
 
+    <!-- cookies used here can be deemed strictly necessary and are hence not required -->
+    <!--
     <div id="biscuit-popup" class="full-page-popup">
         <div class="popup-wrap">
             <h2>Cookie settings</h2>
@@ -78,6 +78,7 @@
             
         </div> 
     </div>  
+    -->
 
     <div id="help-popup" class="full-page-popup">
         <div class="popup-wrap">
@@ -155,7 +156,8 @@
                 <a href="https://www.cloudflare.com/en-gb/privacypolicy/">here</a>)
             </p>
             <p>
-                Strictly necessary cookies are used to remember your cookie consent settings.
+                Your IGN, dark mode preference and previous answers are saved between sessions
+                using your browser's local storage.
             </p>
         </div>
     </div>

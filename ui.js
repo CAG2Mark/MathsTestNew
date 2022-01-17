@@ -66,28 +66,19 @@ setTimeout(() => {
     document.body.classList.remove("no-animation");
 }, 100);
 
-var privacyShown = false;
-var helpShown = false;
-var cookiesShown = false;
-
 var privacyButton = document.getElementById("privacy-button");
 var privacyPage = document.getElementById("privacy-popup"); 
 
 var helpButton = document.getElementById("help-button");
 var helpPage = document.getElementById("help-popup"); 
 
-var cookiesButton = document.getElementById("cookies-button");
-var cookiesPage = document.getElementById("biscuit-popup"); 
-
 var popups = [
     [privacyPage, privacyButton, false], 
-    [cookiesPage, cookiesButton, false], 
     [helpPage, helpButton, false]
 ]
 
 var privacyTuple = popups[0];
-var cookiesTuple = popups[1];
-var helpPage = popups[2];
+var helpPage = popups[1];
 
 for (let i = 0; i < popups.length; ++i) {
     let cur = popups[i];
