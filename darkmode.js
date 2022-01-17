@@ -1,4 +1,4 @@
-// prevent dark mode clicker on reload
+// prevent dark mode flicker on reload
 var darkMode = false;
 
 function load() {
@@ -10,6 +10,7 @@ function load() {
         darkMode = config.darkMode;
     }
     catch (Error) {
+        console.log("Couldn't load dark mode from local storage.")
         return;
     }
 }
