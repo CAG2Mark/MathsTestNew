@@ -1,4 +1,4 @@
-const ANS_HASH = "41b42623a72c543a50600038d8c7b3e898335919af79b748b92c4b4e2ec174b3";
+const ANS_HASH = "7010f4758ae9ccf18374589871f50a5fe9294f07b699ed72495e738072b93ea2";
 
 // slides system
 window.MathJax = {
@@ -13,6 +13,8 @@ var wrap = document.getElementById("wrap");
 var insertLoc = document.getElementById("questions-end");
 
 var children = wrap.getElementsByClassName("slide");
+
+var questionNumberInput = document.getElementById("question-number");
 
 let questionsData = [
     {
@@ -29,10 +31,22 @@ let questionsData = [
         tutorialAnswer: "(pi+e)/2"
     },
     {
-        prompt: `(Tutorial #2) For some questions, you may be asked to enter
+        prompt: `(Tutorial #2) You can also input simple functions as part of your numerical
+        answers. For example, if the answer is \\(\\binom{5}{3} e^{\\sin \\ln 2}\\),
+        you may enter <span class="mono">nCr(5,3) e^sin(ln(2))</span>. Other available functions
+        include <span class="mono">sqrt(x), floor(x), cos(x), cosh(x), arcsin(x), arccosh(x)</span> and more.
+        The input and output to all relevant functions are in radians.`,
+        answerType: AnswerType.NUMBER,
+        signatureTests: null,
+        isTutorial: true,
+        tutorialAnswer: "nCr(5,3) e^sin(ln(2))"
+    },
+    {
+        prompt: `(Tutorial #3) For some questions, you may be asked to enter
         a function. For example, if the question is asking for the sum of
         \\(0.5x^2\\) and \\(0.5x^2-1\\), you could type <span class="mono">x^2-1</span> or
-        <span class="mono">(x-1)(x+1)</span>. All of these will be correct.
+        <span class="mono">(x-1)(x+1)</span>. All of these will be correct. You can also
+        the same functions introduced in the previous slide.
         <br>NOTE: When entering the product of lone varables, for example \\(ab\\), 
         please type something like <span class="mono">a*b</span>
         instead of <span class="mono">ab</span>. Otherwise, this may cause errors.`,
@@ -42,7 +56,7 @@ let questionsData = [
         tutorialAnswer: "x^2-1",
     },
     {
-        prompt: `(Tutorial #3) If mentioned explicitly, you will need to
+        prompt: `(Tutorial #4) If mentioned explicitly, you will need to
         answer EXACTLY some text. For example, if the question instructs you to
         answer <b>exactly</b> the most simplified form of \\(x+x\\), answer <span class="mono">2x</span>.`,
         answerType: AnswerType.EXACT,
@@ -51,33 +65,33 @@ let questionsData = [
         tutorialAnswer: "2x"
     },
     {
-        prompt: `(Q1) \\(1-1+1-1+1-1+1+1=?\\)<br>Input the answer <b>exactly</b> (the answer will not be calculated for you).`,
+        prompt: `(Q1) \\(1-1+1-1+1-1+1=?\\)<br>Input the answer <b>exactly</b> (the answer will not be calculated for you).`,
         answerType: AnswerType.EXACT,
         signatureTests: null,
         isTutorial: false,
     },
     {
-        prompt: `(Q2) \\(9+10=-2+?\\)`,
+        prompt: `(Q2) \\(9+10=2+?\\)`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
-        prompt: `(Q3) \\(\\arcsin{\\sin{\\left(\\frac{\\pi}{4}^\\circ\\right)}}=?\\) Give your answer in <b>radians.</b>`,
+        prompt: `(Q3) \\(\\arcsin{\\cos{\\left(\\frac{\\pi}{4}^\\circ\\right)}}=?\\) Give your answer in <b>gradians.</b>`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
-        prompt: `(Q4) What is the ASCII code of the first letter of Obama's last name (upper case) <b>squared</b>?\\(\\)`,
+        prompt: `(Q4) What is the ASCII code of the second letter of Obama's last name (lower case) <b>squared</b>?\\(\\)`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
-        prompt: `(Q5) \\(\\dv{a^x}{a} = ?\\)`,
+        prompt: `(Q5) \\(\\dv{a^x}{x} = ?\\) Answer as a fuction of \\(x\\), which may contain the constant \\(a\\).`,
         answerType: AnswerType.FUNCTION,
-        signatureTests: [{a: 1, x: 10}, {a: -1, x: 2}, {a: 5, x: -4}, {a: 3.5, x: 10.4}, {a: 4, x: 10}, {a: 0.001, x: 0.003}],
+        signatureTests: [{a: 1, x: 10}, {a: 2, x: 2}, {a: 5, x: -4}, {a: 3.5, x: 10.4}, {a: 4, x: 10}, {a: 0.001, x: 0.003}],
         isTutorial: false
     },
     {
@@ -92,7 +106,7 @@ let questionsData = [
         prompt: `(Q7) \\[\\lim_{N\\to\\infty}\\sum^
             {\\lfloor{\\sum^N_{k=1}{\\frac{1}{k}}}\\rfloor}_
             {{n=\\lceil\\sum^N_{k=1}\\frac{1}{2^k}}\\rceil}
-            \\frac{\\left[\\lim_{a\\to\\infty}\\left(1+\\frac{1}{a}\\right)^a\\right]^{n \\pi i}}{n}= ?\\]`,
+            \\frac{\\left[\\lim_{a\\to\\infty}\\left(1+\\frac{i}{a}\\right)^a\\right]^{n \\pi i}}{n}= ?\\]`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
@@ -109,14 +123,15 @@ let questionsData = [
         isTutorial: false
     },
     {
-        prompt: `(Q9) Suppose that for any integer \\(a\\), the integer \\(a^p-a\\) is a multiple of \\(p\\). If the group \\(\\text{CKSTEM}\\)
-        has order \\(p^2\\), what is the sum of the orders of the smallest and largest subgroups of \\(\\text{CKSTEM}\\), not including \\(\\text{CKSTEM}\\) itself?`,
+        prompt: `(Q9) Suppose that for some integer \\(a\\), the integer \\(a^p-a\\) is not a multiple of \\(p\\), where \\(p>2\\). If the group \\(\\text{CKSTEM}\\)
+        has order \\(p\\), by Lagrange's theorem, what is the sum of the orders of the smallest and largest potential subgroups of \\(\\text{CKSTEM}\\), 
+        not including \\(\\text{CKSTEM}\\) itself?`,
         answerType: AnswerType.FUNCTION,
-        signatureTests: [{p: 1, a: 1, G: 1}, {p: 2, a: 2, G: 2}, {p: 100, a: 10, G: 1}, {p: 0.5, a: 0.25, G: 0.125}],
+        signatureTests: [{p: 1, a: 1, G: 1}, {p: 2, a: 2, G: 2}, {p: 100, a: 10, G: 1}],
         isTutorial: false
     },
     {
-        prompt: `(Q10) If \\(\\text{eon}\\,\\text{eon}-\\text{eon}=1\\), and \\(\\text{eon}>0\\), what is the value of \\(\\text{eon}\\,\\text{eon}\\)?`,
+        prompt: `(Q10) If \\(\\text{eon}\\,\\text{eon}-\\text{eon}=1\\), and \\(\\text{eon}<0\\), what is the value of \\(\\text{eon}\\,\\text{eon}\\)?`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
@@ -124,7 +139,8 @@ let questionsData = [
     {
         prompt: `(Q11) What is the radius of convergence of the Maclaurin series of 
         \\(f(x)=\\frac{x^p}{\\sqrt[q]{a+bx^r}}\\) where 
-            \\(p,q,r \\in \\mathbb{Z}^+\\), and \\(a,b \\in \\mathbb{R} - \\{0\\}\\) ?`,
+            \\(p,q,r \\in \\mathbb{Z}^+\\), and \\(a,b \\in \\mathbb{R} - \\{0\\}\\)? Give a closed-form
+            solution (no limits, summations, etc) in terms of \\(p,q,r,a,b\\).`,
         answerType: AnswerType.FUNCTION,
         signatureTests: [
             {a:17.951410983268488, b: 71.00672474332764, p: 3, q: 15, r: 3},
@@ -140,8 +156,10 @@ let questionsData = [
     },
     {
         prompt: `(Q12) UnWin is very rude and wants to strong-slap every person from a group of 8
-        <b>at least twice</b>. He has the energy to do 30 strong-slaps. In how many ways can he 
-        distribute the 30 strong-slaps? The order in which he strong-slaps does not matter.`,
+        <b>at least twice</b>. He has the energy to do 32 strong-slaps. In how many ways can he 
+        distribute the 32 strong-slaps? <b>The order in which he strong-slaps does not matter</b>.
+        (ie, if there are two different ways, as long as each person receives the same amount of slaps, 
+        they can be considered the same ways).`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
@@ -164,6 +182,39 @@ let questionsData = [
         signatureTests: null,
         isTutorial: false
     },
+    {
+        prompt: `(Q15) For \\(c>0\\), consider the sequence:
+        \\[a_0=\\alpha\\]
+        \\[a_{n+1}=\\lim_{m\\to\\infty}\\left(1+\\frac{ca_n}{m}\\right)^m\\]
+        For which value of \\(c \\in \\mathbb{R}\\) is there a unique \\(\\alpha \\in \\mathbb{R}\\) 
+        such that \\(\\forall n>0, a_{n+1}=a_{n}\\)? Give your answer as the <b>sum</b> of \\(c\\) and its unique \\(\\alpha\\).`,
+        answerType: AnswerType.NUMBER,
+        signatureTests: null,
+        isTutorial: false
+    },
+    {
+        prompt: `(Q16) Let \\(S = \\{x\\in\\mathbb{Z} : P(x)\\}\\), where \\(P(x)\\) is true if and only if \\(x\\) was an answer
+        to the <b>very easy mathematics and human aptitude verification test</b> (available 
+            <a href="https://cag2mark.github.io/MathsTest/" target="_blank">here</a>.) What is \\(|S \\times S|\\)?`,
+        answerType: AnswerType.NUMBER,
+        signatureTests: null,
+        isTutorial: false
+    },
+    {
+        prompt: `(Q17) David has 4 apples. His train is 7 minutes early. What is the mass of the sun in yottagrams?
+        Give your answer to 3 significant figures (you may use scientific notation). Do not enter units.`,
+        answerType: AnswerType.NUMBER,
+        signatureTests: null,
+        isTutorial: false
+    },
+    {
+        prompt: `(Q18)<br>
+            <img src="assets/q18.png" style="min-width: 500px"><br>
+            In the original image, what is in the place of the red question mark? Give the answer <b>exactly</b>.`,
+        answerType: AnswerType.EXACT,
+        signatureTests: null,
+        isTutorial: false
+    },
 ]
 
 let questions = [];
@@ -175,13 +226,16 @@ for (let i = 0; i < questionsData.length; ++i) {
     insertLoc.insertAdjacentElement('beforebegin', question.node);
 }
 
+questionNumberInput.setAttribute("max", questions.length);
+
 children[0].classList.add("slide-visible");
 
 var slide = 0;
 
-
 function transition(index) {
     if (index == slide) return;
+
+    if (index > children.length) return;
 
     let ltoR = index > slide;
 
@@ -189,9 +243,11 @@ function transition(index) {
     let s2 = children[index];
 
     slide = index;
-
     document.getElementById("back").style.display = slide == 0 ? "none" : "block";
     document.getElementById("forward").style.display = slide == (children.length - 1) ? "none" : "block";
+    document.getElementById("skip-questions").style.display = 0 <= slide && slide < 5? "block" : "none";
+    questionNumberInput.style.display = 5 <= slide && (slide <= questionsData.length) ? "block" : "none"
+    questionNumberInput.value = slide - 4;
 
     $(s2).css("left", ltoR ? "200%" : "-100%");
     s2.classList.add("slide-visible");
@@ -264,4 +320,18 @@ document.getElementById("back").addEventListener("click", (o,e) => {
 document.getElementById("forward").addEventListener("click", (o,e) => {
     if (slide == children.length - 1) return;
     transition(slide + 1);
+})
+
+document.getElementById("skip-questions").addEventListener("click", (o,e) => {
+    transition(5);
+});
+
+questionNumberInput.addEventListener("focusout", (e) => {
+    transition(parseInt(questionNumberInput.value)+4);
+})
+
+questionNumberInput.addEventListener("keyup", (e) => {
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    transition(parseInt(questionNumberInput.value)+4);
 })

@@ -89,7 +89,7 @@ button {
     -o-border-radius: 8px;
 
     font-family: "Computer Modern Serif", serif;
-    font-size: 48px;
+    font-size: 40px;
     padding: 8px;
     margin: 8px;
 }
@@ -104,7 +104,35 @@ button:focus {
 
 #back {
     left: var(--button-margin);
-}   
+}
+
+#skip-questions {
+    position: absolute;
+    bottom: var(--button-margin);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#question-number {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    width: 80px;
+    text-align:center;
+    transform: translateX(-50%);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
 
 #forward {
     right: var(--button-margin);

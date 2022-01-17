@@ -9,6 +9,9 @@ var template = document.getElementById("question-template");
 const customLaTeX = {
     'sqrt': function (node, options) { 
       return '\\sqrt{' + node.args[0].toTex(options) + '}';
+    },
+    'nCr': function (node, options) { 
+        return `\\binom{${node.args[0].toTex(options)}}{${node.args[1].toTex(options)}}`;
     }
 }
 
@@ -16,6 +19,41 @@ const texOptions = {
     parenthesis: 'auto',   
     implicit: 'hide',    
     handler: customLaTeX
+}
+
+function gcd(a,b) {
+    if (!(Number.isInteger(a) && Number.isInteger(b))) return 1;
+    a = Math.abs(a);
+    b = Math.abs(b);
+    while (b != 0) {
+        let temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+// Function to find the nCr
+function nCr(n, r) {
+    if (n <= 0 || r < 0 || n < r) return 0;
+    if (!Number.isInteger(r)) return NaN;
+    var p = 1, k = 1;
+    if (Number.isInteger(n) && n - r < r)
+        r = n - r;
+    if (r != 0) {
+        while (r) {
+            p *= n;
+            k *= r;
+            var m = gcd(p, k);
+            p /= m;
+            k /= m;
+            --n;
+            --r;
+        }
+    } else {
+        p = 1;
+    }
+    return k == 1 ? p : p/k;
 }
 
 const customFunctions = {
@@ -26,6 +64,7 @@ const customFunctions = {
     arcsinh: Math.asinh,
     arccosh: Math.acosh,
     arctanh: Math.atanh,
+    nCr: nCr,
 }
 
 math.import(customFunctions);
