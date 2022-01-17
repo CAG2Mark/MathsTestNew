@@ -2,7 +2,7 @@
 
 // Initialises everything and keeps everything running. 
 
-const ANS_HASH = "b35a013e8f9e8d5b5636ca0426ad8c5085ffd69e57550cfe2656bd20d6735ef9";
+const ANS_HASH = "a2b6007888823004b9320a8039fa07ebe49823ee8e25e165710b42eb2c949119";
 
 // slides system
 window.MathJax = {

@@ -68,7 +68,7 @@ let questionsData = [
     },
     {
         id: "21",
-        prompt: `(Q2) \\[\\sqrt{\\lim_{n\\to\\infty} \\left(1+\\frac{\pi}{n}\\right)^n} = ?\\]`,
+        prompt: `(Q2) \\[\\sqrt{\\lim_{n\\to\\infty} \\left(1+\\frac{\\pi}{n}\\right)^n} = ?\\]`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
