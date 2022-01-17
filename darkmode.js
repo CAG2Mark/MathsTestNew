@@ -5,7 +5,6 @@ function load() {
     if (Cookies.get("cookieStatus") != 2) return;
     try {
         let cookie = Cookies.get("config");
-        console.log(cookie)
         if (!cookie.trim()) return;
         config = JSON.parse(cookie);
 

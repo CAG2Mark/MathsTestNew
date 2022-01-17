@@ -379,6 +379,7 @@ body.dark-mode, .dark-mode .full-page-popup, .dark-mode #top-row {
         font-size: 22px;
         padding: 1px 8px;
         height: 44px;
+        color: black;
     }
 
     #skip-questions {

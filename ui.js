@@ -77,7 +77,7 @@ var helpButton = document.getElementById("help-button");
 var helpPage = document.getElementById("help-popup"); 
 
 var cookiesButton = document.getElementById("cookies-button");
-var cookiesPage = document.getElementById("cookies-popup"); 
+var cookiesPage = document.getElementById("biscuit-popup"); 
 
 var popups = [
     [privacyPage, privacyButton, false], 
