@@ -12,7 +12,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+
     <title>Harder</title>
 </head>
 
@@ -89,8 +99,8 @@
                 In the answers field, for numerical and function answers, you can enter various expressions 
                 as part of your answer.
                 The input field can function like a mini-calculator. In fact, it is recommended to
-                type in the exact answer (in terms of \(\cos, \sin, e, \pi, \text{etc.}\)). If your answer 
-                is not an integer. The precision used to check your answer is greater than
+                type in the exact answer (in terms of \(\cos, \sin, e, \pi, \text{etc.}\)) if your answer 
+                is not an integer. The precision used your answer is checked to is greater than
                 that of most calculators.
             </p>
             <p>
@@ -101,7 +111,7 @@
                 and common constants should work. To use \(\pi\) for example, simply type
                 <span class="mono">pi</span>. To calculate \(\cos(1)\), simply enter
                 <span class="mono">cos(1)</span>. Note that all trigonometric and 
-                hyperbolic functions use radians as both the input and output unit.
+                hyperbolic functions use radians as both of their input and output units.
             </p>
             <p>The following manually added / renamed functions are also available:
                 <ul class="mono">
@@ -122,11 +132,11 @@
                 answers are checked.
             </p>
             <p>
-                Also note it it is your responsibility to determine whether the answer
-                should be a numerical value or a function if it is not explicitly specified.
+                Also note that it is your responsibility to determine whether the answer
+                should be a numerical value or a function when such information not explicitly specified.
                 The questions give you enough information to discern whether the answer
                 is in terms of constants and variables from the question, or whether it is
-                a fixed value.
+                a numerical value.
             </p>
             <h2>Submitting answers</h2>
             <p>
@@ -166,14 +176,27 @@
 
     <div id="wrap">
 
-        <div class="slide question" id="name-entry">
+        <div class="slide question starting-slide" id="name-entry">
             <p class="question-text">Please enter your nickname</p>
             <input type="text" id="ign-input" class="question-input">
         </div>
 
         <div id="questions-end" class="slide">
-            <button id="get-code-button" onclick="getData()">Get Code</button>
-            <input type="text" id="code-out">
+            <button id="get-code-button">Check Answers</button>
+            <div class="end-page end-page-hidden" id="error-page">
+                <p>There was an error evaluating your answer for question #<span id="error-question-num"></span>.</p>
+                <button id="error-redirect-button">Take me there.</button>
+            </div>
+            <div class="end-page end-page-hidden"  id="incorrect-page">
+                <p>Sorry, you got one or more questions wrong. Try again.</p>
+            </div>
+            <div class="end-page end-page-hidden" id="correct-page">
+                <p>
+                    Congratulations! You got everything correct! DM me the following code for your prize.
+                </p>
+                <div id="code-out">UBAFE9DCB89ADF8EAFEADBCDBFD9C89A==</div>
+            </div>
+
         </div>
 
         <button id="back" class="material-icons round-button" style="display: none">arrow_back</button>
@@ -185,9 +208,6 @@
 </body>
 
 <script src="mathjs/math.js"></script>
-<script src="jquery-3.6.0.min.js"></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 <script src="sha256.js"></script>
 <script src="mathschecker.js"></script>

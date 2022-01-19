@@ -2,7 +2,9 @@
     --button-margin: 16px;
 }
 
-body, html, #wrap {
+body,
+html,
+#wrap {
     font: 40px "Computer Modern Serif", serif;
     user-select: none;
 
@@ -43,7 +45,7 @@ body, html, #wrap {
 }
 
 .slide {
-    
+
     position: absolute;
 
     left: 50%;
@@ -57,7 +59,7 @@ body, html, #wrap {
     display: none;
 
     width: 100vw;
-    
+
 }
 
 .material-icons {
@@ -99,15 +101,22 @@ button {
     color: white;
 }
 
-button:hover, button.hovered {
+button:hover,
+button.hovered {
     background-color: #DDDDDD;
 }
-.dark-mode button:hover, .dark-mode button.hovered {
+
+.dark-mode button:hover,
+.dark-mode button.hovered {
     background-color: #272727;
 }
 
 button:focus {
     outline: none;
+}
+
+.katex {
+    font-size: 1em !important;
 }
 
 #back {
@@ -127,7 +136,7 @@ button:focus {
     bottom: 28px;
     left: 50%;
     width: 80px;
-    text-align:center;
+    text-align: center;
     transform: translateX(-50%);
 }
 
@@ -191,6 +200,66 @@ p {
     overflow-y: hidden;
 }
 
+@keyframes left-in-anim {
+    0% {
+        left: -100%
+    }
+
+    100% {
+        left: 50%
+    }
+}
+
+@keyframes left-out-anim {
+    0% {
+        left: 50%
+    }
+
+    100% {
+        left: -100%
+    }
+}
+
+@keyframes right-in-anim {
+    0% {
+        left: 200%
+    }
+
+    100% {
+        left: 50%
+    }
+}
+
+@keyframes right-out-anim {
+    0% {
+        left: 50%
+    }
+
+    100% {
+        left: 200%
+    }
+}
+
+.left-in {
+    animation-name: left-in-anim;
+    animation-duration: 400ms;
+}
+
+.left-out {
+    animation-name: left-out-anim;
+    animation-duration: 400ms;
+}
+
+.right-in {
+    animation-name: right-in-anim;
+    animation-duration: 400ms;
+}
+
+.right-out {
+    animation-name: right-out-anim;
+    animation-duration: 400ms;
+}
+
 .slide-visible {
     display: flex !important;
     flex-flow: column wrap;
@@ -226,22 +295,30 @@ input:hover {
     border-color: #3d3d3d;
 }
 
-input:focus, .dark-mode input:focus {
+input:focus,
+.dark-mode input:focus {
     border-color: #005cd4;
     outline: none;
 }
 
-.no-animation, .no-animation * {
+.no-animation,
+.no-animation * {
     transition: 0s !important;
 }
 
 /* Dark Mode */
-body, .full-page-popup, #top-row {
+body,
+.full-page-popup,
+#top-row {
     transition: background-color 300ms, color 300ms;
     background-color: white;
     color: #0c0c0c;
 }
-body.dark-mode, .dark-mode .full-page-popup, .dark-mode #top-row {
+
+body.dark-mode,
+.dark-mode .full-page-popup,
+.dark-mode #top-row,
+.dark-mode #correct-page {
     color: white;
     background-color: #141414;
 }
@@ -249,15 +326,37 @@ body.dark-mode, .dark-mode .full-page-popup, .dark-mode #top-row {
 /* Full page popups */
 
 @keyframes opacity-in {
-    0% {visibility: hidden; opacity: 0;}
-    1% {visibility: visible; opacity: 0;}
-    100% {opacity: 1; visibility: visible; }
+    0% {
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    1% {
+        visibility: visible;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
 @keyframes opacity-out {
-    0% {opacity: 1; visibility: visible; }
-    99% {visibility: visible; opacity: 0;}
-    100% {visibility: hidden; opacity: 0;}
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    99% {
+        visibility: visible;
+        opacity: 0;
+    }
+
+    100% {
+        visibility: hidden;
+        opacity: 0;
+    }
 }
 
 .full-page-popup {
@@ -297,7 +396,9 @@ body.dark-mode, .dark-mode .full-page-popup, .dark-mode #top-row {
     height: auto;
     width: 80%;
 }
-.popup-wrap > p, .popup-wrap > * > li {
+
+.popup-wrap>p,
+.popup-wrap>*>li {
     width: 100%;
     font-size: 24px;
     text-align: left;
@@ -307,11 +408,12 @@ body.dark-mode, .dark-mode .full-page-popup, .dark-mode #top-row {
     font-size: 24px;
     margin: 8px 0px 0px 0px;
 }
-.popup-wrap > h2 {
+
+.popup-wrap>h2 {
     margin: 16px 0;
 }
 
-.popup-wrap::-webkit-scrollbar-track{
+.popup-wrap::-webkit-scrollbar-track {
     margin-top: 55px;
 }
 
@@ -320,9 +422,12 @@ body.dark-mode, .dark-mode .full-page-popup, .dark-mode #top-row {
         --button-margin: 8px;
     }
 
-    body, html, #wrap {
+    body,
+    html,
+    #wrap {
         font: 24px "Computer Modern Serif", serif;
     }
+
     input {
         font: 24px "Roboto Mono", Consolas, monospace;
         width: 90%;
@@ -358,14 +463,118 @@ body.dark-mode, .dark-mode .full-page-popup, .dark-mode #top-row {
     }
 }
 
-@media (max-width: 900px), (max-height: 500px) {
+.dark-mode #code-out {
+    background-color: #353535;
+}
+
+#code-out {
+    transition: 300ms background-color, 300ms color;
+
+    font: 20px 'Roboto Mono', Consolas, monospace;
+    word-wrap: break-word;
+    padding: 12px;
+    background-color: #dbdbdb;
+    border-radius: 10px;
+    user-select: all;
+    max-width: calc(100% - 32px);
+}
+
+.dark-mode .end-page {
+    border: solid 2px rgb(124, 124, 124);
+}
+
+.end-page {
+    transition: 300ms border-color, 300ms background, 300ms color;
+
+    padding: 16px;
+    border-radius: 10px;
+    border: solid 2px rgb(92, 92, 92);
+
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+
+    max-width: calc(90% - 32px);
+}
+
+.end-page-hidden {
+    display: none;
+}
+
+.end-page p {
+    width: 100%;
+    margin: 8px 0;
+
+    text-align: center;
+}
+
+.end-page button {
+    margin: 0 auto;
+}
+
+/* 
+Credit for animated border: 
+
+Copyright (c) 2022 by Mike Schultz (https://codepen.io/mike-schultz/pen/NgQvGO)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*/
+
+#correct-page {
+    --borderWidth: 4px;
+    --borderRadius: 10px;
+    background: white;
+    position: relative;
+    border-radius: var(--borderRadius);
+    border: none;
+}
+
+#correct-page:after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    border-radius: calc(var(--borderRadius) + var(--borderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+}
+
+
+@keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@media (max-width: 900px),
+(max-height: 500px) {
     :root {
         --button-margin: 8px;
     }
 
-    body, html, #wrap {
+    body,
+    html,
+    #wrap {
         font: 18px "Computer Modern Serif", serif;
     }
+
     input {
         font: 18px "Roboto Mono", Consolas, monospace;
         width: 90%;
@@ -413,23 +622,25 @@ body.dark-mode, .dark-mode .full-page-popup, .dark-mode #top-row {
         margin-top: 43px;
         height: calc(100% - 43px);
     }
-    
+
     #privacy-button {
         padding: 3.5px 9px;
     }
 
-    .popup-wrap > p, .popup-wrap > * > li {
+    .popup-wrap>p,
+    .popup-wrap>*>li {
         width: 100%;
         font-size: 18px;
         text-align: left;
     }
-    
+
     .popup-wrap button {
         font-size: 18px;
         margin: 8px 0px 0px 0px;
         height: auto;
     }
-    .popup-wrap > h2 {
+
+    .popup-wrap>h2 {
         margin: 12px 0;
     }
 }

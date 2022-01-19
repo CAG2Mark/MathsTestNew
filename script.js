@@ -2,36 +2,7 @@
 
 // Initialises everything and keeps everything running. 
 
-const ANS_HASH = "a2b6007888823004b9320a8039fa07ebe49823ee8e25e165710b42eb2c949119";
-
-// slides system
-window.MathJax = {
-    loader: {load: ['[tex]/ams', '[tex]/physics']},
-    tex: {packages: {'[+]': ['ams', 'physics']}}
-};
-
-// init questions
-var body = document.body;
-
-var wrap = document.getElementById("wrap");
-var insertLoc = document.getElementById("questions-end");
-
-let questions = [];
-
-for (let i = 0; i < questionsData.length; ++i) {
-    let q = questionsData[i];
-    let question = new Question(q.id, q.prompt, q.answerType, q.signatureTests, q.isTutorial, q.tutorialAnswer);
-    questions.push(question);
-    let ans;
-    if (ans = config.questionAnswers[q.id]) 
-    setTimeout(() => {
-        question.setAnswerText(ans);
-    }, 100);
-
-    insertLoc.insertAdjacentElement('beforebegin', question.node);
-}
-
-questionNumberInput.setAttribute("max", questions.length);
+const ANS_HASH = "f479615cdfdedea5a867382517b20f339c17d2d5fa6e5ee1f0227f17a1c8c203";
 
 // Source: https://stackoverflow.com/questions/51531021/javascript-aes-encryption-and-decryption-advanced-encryption-standard
 
@@ -57,7 +28,29 @@ function getInput(obj) {
 
 var finishButton = document.getElementById("get-code-button");
 var ignInput = document.getElementById("ign-input");
-function getData() {
+
+var errorPage = document.getElementById("error-page");
+var incorrectPage = document.getElementById("incorrect-page");
+var correctPage = document.getElementById("correct-page");
+
+var finishPages = [errorPage, incorrectPage, correctPage];
+
+function showPage(page) {
+    for (let i = 0; i < finishPages.length; ++i) {
+        let cur = finishPages[i];
+        if (cur === page) continue;
+        cur.classList.add("end-page-hidden");    
+    }
+    page.classList.remove("end-page-hidden");
+}
+
+var latestErrorQuestion = 0;
+
+document.getElementById("error-redirect-button").addEventListener("click", () => {
+    transition(latestErrorQuestion + startingSlideCnt - 1);
+});
+
+function checkAnswers() {
     let ign = ignInput.value;
     let val = "";
 
@@ -66,10 +59,19 @@ function getData() {
         return;
     }
     
-    for (var i = 1; i < questions.length; ++i) {
+    for (var i = 0; i < questions.length; ++i) {
         let q = questions[i];
         if (q.isTutorial) continue;
-        val += q.getAnswer() + ";";
+        try {
+            val += q.getAnswer() + ";";
+        }
+        catch (error) {
+            document.getElementById("error-question-num").innerHTML = q.qNum;
+            latestErrorQuestion = q.qNum;
+            showPage(errorPage);
+            console.log(error);
+            return;
+        }
     }
 
     let hash = sha256(val);
@@ -79,13 +81,15 @@ function getData() {
 
     if (hash == ANS_HASH) {
         let enc = code.encryptMessage(ign, val);
-        document.getElementById("code-out").value = enc;
-        alert("You got everything correct! DM me the code for your prize.");
+        document.getElementById("code-out").innerHTML = enc;
+        showPage(correctPage);
     }
     else {
-        alert("One or more of your answers were wrong. Try again.");
+        showPage(incorrectPage);
     }
 }
+
+finishButton.addEventListener("click", checkAnswers);
 
 ignInput.addEventListener("focusout", (e) => {
     config.ign = ignInput.value;

@@ -1,10 +1,11 @@
 var children = wrap.getElementsByClassName("slide");
 
-var questionNumberInput = document.getElementById("question-number");
-
 children[0].classList.add("slide-visible");
 
 var slide = 0;
+
+var startCnt = document.getElementsByClassName("starting-slide").length;
+var startingSlideCnt = startCnt + tutorialQuestionsCnt;
 
 function transition(index) {
     if (index == slide) return;
@@ -17,20 +18,34 @@ function transition(index) {
     let s2 = children[index];
 
     slide = index;
+
+    // hide errors on last page
+    if (slide == children.length - 1) {
+        document.getElementById("incorrect-page").classList.add("end-page-hidden");
+        document.getElementById("error-page").classList.add("end-page-hidden");
+    }
+
+
     document.getElementById("back").style.display = slide == 0 ? "none" : "block";
     document.getElementById("forward").style.display = slide == (children.length - 1) ? "none" : "block";
-    document.getElementById("skip-questions").style.display = 0 < slide && slide < 5? "block" : "none";
-    questionNumberInput.style.display = 5 <= slide && (slide <= questionsData.length) ? "block" : "none"
+    document.getElementById("skip-questions").style.display = 0 < slide && slide < startingSlideCnt? "block" : "none";
+    questionNumberInput.style.display = startingSlideCnt <= slide && (slide <= questionsData.length) ? "block" : "none"
     questionNumberInput.value = slide - 4;
 
-    $(s2).css("left", ltoR ? "200%" : "-100%");
+    let s2Anim = ltoR ? "right-in" : "left-in";
+    let s1Anim = !ltoR ? "right-out" : "left-out";
+    //$(s2).css("left", ltoR ? "200%" : "-100%");
     s2.classList.add("slide-visible");
-    $(s1).animate({left: !ltoR ? "200%" : "-100%"});
-    $(s2).animate({left: "50%"});
+    s2.classList.add(s2Anim);
+    s1.classList.add(s1Anim);
+    //$(s1).animate({left: !ltoR ? "200%" : "-100%"});
+    //$(s2).animate({left: "50%"});
 
     setTimeout(() => {
-        //s1.classList.remove("slide-visible")
-    }, 300);
+        s2.classList.remove(s2Anim);
+        s1.classList.remove(s1Anim);
+        s1.classList.remove("slide-visible")
+    }, 400);
 }
 
 document.getElementById("back").addEventListener("click", (o,e) => {
@@ -44,12 +59,12 @@ document.getElementById("forward").addEventListener("click", (o,e) => {
 })
 
 document.getElementById("skip-questions").addEventListener("click", (o,e) => {
-    transition(5);
+    transition(startingSlideCnt);
 });
 
 function handleQuestionNumberChange() {
     if (!Number.isInteger(parseInt(questionNumberInput.value))) return;
-    transition(parseInt(questionNumberInput.value)+4);
+    transition(parseInt(questionNumberInput.value)+ startingSlideCnt - 1);
 }
 
 questionNumberInput.addEventListener("focusout", (e) => {
