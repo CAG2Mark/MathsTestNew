@@ -89,9 +89,9 @@ let questionsData = [
     },
     {
         id: "derivative",
-        prompt: `(Q5) \\(\\frac{\\mathrm{d}d^d}{\\mathrm{d}d} = ?\\) Answer as a fuction of \\(d\\)`,
+        prompt: `(Q5) \\(\\frac{\\mathrm{d}d^d}{\\mathrm{d}d} = ?\\) Answer as a fuction of \\(d\\).`,
         answerType: AnswerType.FUNCTION,
-        signatureTests: [{x: 10}, {x: 2}, {x: 3}, {x: 10.4}, {x: 10}, {x: Math.E}],
+        signatureTests: [{d: 10}, {d: 2}, {d: 3}, {d: 10.4}, {d: 10}, {d: Math.E}],
         isTutorial: false
     },
     {
