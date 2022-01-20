@@ -7,6 +7,7 @@ html,
 #wrap {
     font: 40px "Computer Modern Serif", serif;
     user-select: none;
+    -webkit-user-select: none;
 
     position: relative;
 
@@ -42,6 +43,7 @@ html,
 
 .mono {
     font: 0.8em 'Roboto Mono', Consolas, monospace;
+    user-select: text;
 }
 
 .slide {
@@ -476,6 +478,10 @@ body.dark-mode,
     background-color: #dbdbdb;
     border-radius: 10px;
     user-select: all;
+    -webkit-user-select: text;
+
+    margin-bottom: 8px;
+    
     max-width: calc(100% - 32px);
 }
 

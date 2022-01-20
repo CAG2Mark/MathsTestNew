@@ -10,13 +10,13 @@ let questionsData = [
     {
         id: "tut1",
         prompt: `(Tutorial #1) For some questions, you will have to answer
-        with a numerical value. If so, you may enter anything
-        equivalent to the correct answer and it will be accepted. For example, 
+        with an answer that is a number. For example, 
         if the answer is \\(\\frac{\\pi+e}{2}\\), then <span class="mono">(pi+e)/2</span>, 
         <span class="mono">0.5(pi+e)</span>, <span class="mono">2(pi+e)/(3+1)</span> etc. 
-        will all be accepted. Try it below. <br>Your answers to the tutorial questions 
-        will not affect the final
-        result of this quiz/test.`,
+        will all be accepted. However, your answers will be checked to a higher precision
+        than most calculators, so <b>do not enter approximate numbers as your answer</b>. 
+        Try entering the answer below. <br>Your answers to the tutorial questions 
+        will not affect the final result of this quiz/test.`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: true,
@@ -27,7 +27,7 @@ let questionsData = [
         prompt: `(Tutorial #2) You can also have simple functions as part of your numerical
         answers if you wish. For example, if the answer is \\(\\sqrt{\\binom{5}{3} e^{\\sin \\ln 2}}\\),
         you may enter <span class="mono">sqrt(nCr(5,3) e^sin(ln(2)))</span>. Other available functions
-        include <span class="mono">sqrt(x), floor(x), cos(x), cosh(x), arcsin(x), arccosh(x)</span> and more.
+        include <span class="mono">floor(x), cos(x), arcsin(x)</span> and more. 
         The input and output to all relevant functions are in radians.`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
@@ -37,17 +37,17 @@ let questionsData = [
     {
         id: "tut3",
         prompt: `(Tutorial #3) For some questions, you may be asked to enter
-        a function. For example, if the question is asking for the sum of
-        \\(0.5x^2\\) and \\(0.5x^2-1\\), you could type <span class="mono">x^2-1</span> or
-        <span class="mono">(x-1)(x+1)</span>. All of these will be correct. You can also
-        the same functions introduced in the previous slide.
+        a function or expression. For example, if the question is asking for the product of
+        \\(|x-1|\\) and \\(|x+1|\\), you could type <span class="mono">abs(x^2-1)</span> or
+        <span class="mono">abs(x-1) * abs(x+1)</span>. All of these will be correct. You can also
+        use the same functions introduced in the previous slide.
         <br>NOTE: When entering the product of lone varables, for example \\(ab\\), 
         please type something like <span class="mono">a*b</span>
         instead of <span class="mono">ab</span>. Otherwise, this may cause errors.`,
         answerType: AnswerType.FUNCTION,
         signatureTests: [{x: 1},{x: -100},{x: 2},{x: 4.5123},{x: 7},{x: 100},{x: 0}],
         isTutorial: true,
-        tutorialAnswer: "x^2-1",
+        tutorialAnswer: "abs(x^2-1)",
     },
     {
         id: "tut4",
@@ -164,8 +164,8 @@ let questionsData = [
         prompt: `(Q12) UnWin is very rude and wants to strong-slap every person from a group of 8
         <b>at least twice</b>. He has the energy to do 32 strong-slaps. In how many ways can he 
         distribute the 32 strong-slaps? <b>The order in which he strong-slaps does not matter</b>.
-        (ie, if there are two different ways, as long as each person receives the same amount of slaps, 
-        they can be considered the same ways).`,
+        (ie, all configurations where each person receives the same amount of slaps 
+        should be counted together as one way).`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
