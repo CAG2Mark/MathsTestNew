@@ -197,7 +197,7 @@ let questionsData = [
 
         For which value of \\(c \\in \\mathbb{R}\\) is there a unique \\(L \\in \\mathbb{R}\\) such that \\(\\forall \\alpha \\in \\mathbb{R}\\), 
         \\(\\lim_{n\\to\\infty} a_n \\text{ converges} \\implies \\lim_{n\\to\\infty} a_n = L\\)?
-        Give your answer as the value of \\(c\\)`,
+        Give your answer as the value of \\(c\\).`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
