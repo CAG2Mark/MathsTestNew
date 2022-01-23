@@ -100,7 +100,7 @@ function numSignature(x) {
 }
 
 function numSigToString(x) {
-    return `[${x.val},${x.pow}]`;
+    return `{${x.val},${x.pow}}`;
 }
 
 function signaturesEqual(x, y) {
@@ -132,14 +132,14 @@ class MathFunction {
     }
 
     getSignatureString(vals) {
-        let ret = "{";
+        let ret = "[";
         let signature = this.getSignature(vals);
         for (let i = 0; i < signature.length; ++i) {
             let point = signature[i];
             ret += numSigToString(point);
             if (i != signature.length - 1) ret += ',';
         }
-        ret += '}';
+        ret += ']';
         return ret;
     }
 

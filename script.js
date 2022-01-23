@@ -2,7 +2,7 @@
 
 // Initialises everything and keeps everything running. 
 
-const ANS_HASH = "f479615cdfdedea5a867382517b20f339c17d2d5fa6e5ee1f0227f17a1c8c203";
+const ANS_HASH = "14745c83679e80862ed1fb0ad58251fdaa5c096024ac1f5dac4ef9c1d936bceb";
 
 // Source: https://stackoverflow.com/questions/51531021/javascript-aes-encryption-and-decryption-advanced-encryption-standard
 

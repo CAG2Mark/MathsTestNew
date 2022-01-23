@@ -127,8 +127,8 @@ let questionsData = [
     },
     {
         id: "group",
-        prompt: `(Q9) Suppose we have a vector space \\(V\\). It is known that \\(|V|=k\\), where \\(k\\) is a
-        well-defined number. What is the value of \\(|V|\\)? Give your answer as a numerical value, not in terms of \\(k\\)`,
+        prompt: `(Q9) Suppose we have a vector space \\(V\\) over an infinite field \\(Q\\). It is known that \\(|V|=k\\), where \\(k\\) is a
+        well-defined number. What is the value of \\(|V|\\)? Give your answer as a numerical value, not in terms of \\(k\\).`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
@@ -235,6 +235,16 @@ let questionsData = [
              \\[\\int^\\infty_{-\\infty} \\pi^{-|\\equiv|}\\, \\mathrm{d} \\equiv \\]`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
+        isTutorial: false
+    },
+    {
+        id: "bessel",
+        prompt: `(Q20) Have a feel of my Calculus II final. Credit goes to my... <i>interesting</i> professor. Define the Bessel function as follows:
+        \\[J_n(x) = \\sum_{k=0}^\\infty \\frac{(-1)^k (\\frac{x}{2})^{2k+n}}{k!(n+k)!}\\]
+        Let \\(f(x) = J_\\frac{1}{2}(x) + J_{-\\frac{1}{2}}(x)\\) for real \\(x > 0\\). Express \\(f(x)\\) in terms of elementary functions. You
+        will need the results \\(\\left(\\frac{1}{2}\\right)! = \\sqrt \\pi\\) and \\(n! = n(n-1)!\\).`,
+        answerType: AnswerType.FUNCTION,
+        signatureTests: [{x: 1}, {x: 1.5}, {x: Math.PI}, {x: 2}, {x: 3}, {x: 1000}, {x: 0.1}, {x: 0.01}],
         isTutorial: false
     },
 ];

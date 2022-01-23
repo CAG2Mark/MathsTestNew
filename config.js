@@ -13,9 +13,6 @@ function loadConfig() {
         let val = localStorage.getItem("config");
         if (!val.trim()) return;
         config = JSON.parse(val);
-
-        darkMode = config.darkMode;
-        updateDarkMode();
     }
     catch (Error) {
         console.log("Could not load preferences from JSON.");
