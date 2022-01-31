@@ -96,12 +96,22 @@
         <div class="popup-wrap">
             <h2>Entering answers</h2>
             <p>
-                In the answers field, for numerical and function answers, you can enter various expressions 
-                as part of your answer.
-                The input field can function like a mini-calculator. In fact, it is recommended to
-                type in the exact answer (in terms of \(\cos, \sin, e, \pi, \text{etc.}\)) if your answer 
-                is not an integer. The precision used your answer is checked to is greater than
-                that of most calculators.
+                For every question, you should input your answer into the answer box below the question
+                prompt. Depending on the question, you may need to enter a function/expression in terms
+                of variables/constants provided by the question, or you may need to enter an exact
+                number.
+            </p>
+            <p>
+                The input field can function like a mini-calculator; it understands common constants
+                and functions. It will show you a preview of your parsed answer as you type, and will
+                display an approximation of your answer when the answer is an exact number.
+            </p>
+            <p>
+                In fact, if your answer does not have an exact decimal representation,
+                you must type in the exact answer (in terms of 
+                \(\cos, \sin, e, \pi, \text{etc.}\)). The precision used your answer is checked to is greater than
+                that of most calculators. For example, if the answer is \(e^{\cos 2}\), you must
+                enter your answer as <span class="mono">e^cos(2)</span> and not <span class="mono">0.65958</span>.
             </p>
             <p>
                 The functions you may use can be found here: 
@@ -158,18 +168,18 @@
         <div class="popup-wrap">
             <p>
                 This website is purely client-side and does not store identifiable user data on any server.
-                The developer has made no efforts to store any user data from this site, 
-                including anonymised data, anywhere. This can be verified by viewing the 
-                source code of this project.
+                The developer has made no efforts to send any user-generated data to any server. 
+                This can be verified by viewing the source code of this project.
             </p>
             <p>
                 However, this site is hosted on Cloudflare Pages, and hence is on Cloudflare's network. 
                 Thus, usage of this site may be subject to Cloudflare's privacy policy (available 
-                <a href="https://www.cloudflare.com/en-gb/privacypolicy/">here</a>)
+                <a href="https://www.cloudflare.com/en-gb/privacypolicy/">here</a>).
             </p>
             <p>
                 Your IGN, dark mode preference and previous answers are saved between sessions
-                using your browser's local storage.
+                using your browser's local storage. However, this data is not accessible by the
+                developer.
             </p>
         </div>
     </div>
@@ -179,6 +189,18 @@
         <div class="slide question starting-slide" id="name-entry">
             <p class="question-text">Please enter your nickname</p>
             <input type="text" id="ign-input" class="question-input">
+        </div>
+
+        <div class="slide starting-slide">
+            <p><b>Welcome</b></p>
+            <p>Welcome to the new maths test website. The next four pages will be tutorial questions
+                to teach you how to input answers into the new system. Your answers to these questions
+                will not affect the final result - you can skip them if you wish. After those
+                come the real questions, which you will have to answer.
+            </p>
+            <p>Your answers will be saved automatically between sessions, provided you
+                do not access this site in incognito/private mode or disable/clear your browser's local storage.
+            </p>
         </div>
 
         <div id="questions-end" class="slide">

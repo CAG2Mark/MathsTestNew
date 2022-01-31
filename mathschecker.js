@@ -15,7 +15,7 @@ const customLaTeX = {
     },
     'nPr': function (node, options) { 
         return `\\mathrm{nPr}(${node.args[0].toTex(options)},${node.args[1].toTex(options)})`;
-    }
+    },
 }
 
 const texOptions = {

@@ -419,7 +419,7 @@ body.dark-mode,
     margin-top: 55px;
 }
 
-@media (max-height: 750px) {
+@media (max-height: 900px) {
     :root {
         --button-margin: 8px;
     }

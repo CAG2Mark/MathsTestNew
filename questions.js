@@ -15,8 +15,7 @@ let questionsData = [
         <span class="mono">0.5(pi+e)</span>, <span class="mono">2(pi+e)/(3+1)</span> etc. 
         will all be accepted. However, your answers will be checked to a higher precision
         than most calculators, so <b>do not enter approximate numbers as your answer</b>. 
-        Try entering the answer below. <br>Your answers to the tutorial questions 
-        will not affect the final result of this quiz/test.`,
+        Try entering the answer below.`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: true,
@@ -61,73 +60,75 @@ let questionsData = [
     },
     {
         id: "altsum",
-        prompt: `(Q1) \\(1-1+1-1+1-1+1=?\\)<br>Input the answer <b>exactly</b> (the answer will not be calculated for you).`,
+        prompt: `\\(1+2+3+4+5+6+7+8+9+1+2+3+4+5+7+8+9=?\\)<br>Input the answer <b>exactly</b> (the answer will not be calculated for you).`,
         answerType: AnswerType.EXACT,
         signatureTests: null,
         isTutorial: false,
     },
     {
         id: "21",
-        prompt: `(Q2) \\(9+10=2+?\\)`,
+        prompt: `\\(9+10=2+?\\)`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
         id: "trig",
-        prompt: `(Q3) \\(\\arcsin{\\cos{\\left(\\frac{\\pi}{4}^\\circ\\right)}}=?\\) Give your answer in <b>gradians.</b>`,
+        prompt: `\\(\\arcsin{\\cos{\\left(\\frac{\\pi}{4}^\\circ\\right)}}=?\\) Give your answer in <b>gradians.</b>`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
         id: "ascii",
-        prompt: `(Q4) What is the ASCII code of the second letter of Obama's last name (lower case) <b>squared</b>?\\(\\)`,
+        prompt: `What is the ASCII code of the second letter of Obama's last name (lower case) <b>squared</b>?\\(\\)`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
         id: "derivative",
-        prompt: `(Q5) \\(\\frac{\\mathrm{d}d^d}{\\mathrm{d}d} = ?\\) Answer as a fuction of \\(d\\).`,
+        prompt: `\\(\\frac{\\mathrm{d}d^d}{\\mathrm{d}d} = ?\\) Answer as a fuction of \\(d\\).`,
         answerType: AnswerType.FUNCTION,
         signatureTests: [{d: 10}, {d: 2}, {d: 3}, {d: 10.4}, {d: 10}, {d: Math.E}],
         isTutorial: false
     },
     {
         id: "sqrta",
-        prompt: `(Q6) Suppose \\(\\exists x \\in\\mathbb{R}, \\exists b \\in\\mathbb{R}, \\exists c \\in\\mathbb{R}, 
-            \\exists a \\in \\mathbb{R}^+\\), \\(ax^2-\\sqrt{a}b+\\frac{c}{4}=0\\) holds.
-            Find an expression for the maximal value of \\(\\sqrt{a}\\) in terms of \\(x,b,c\\).`,
+        prompt: `Suppose \\(\\exists x \\in\\mathbb{R} - \\{0\\}, \\exists b \\in\\mathbb{R}, \\exists c \\in\\mathbb{R}, 
+            \\exists a \\in \\mathbb{R}^+\\), <br>\\(ax^2-\\sqrt{a}bx+\\frac{c}{4}=0\\) holds.
+            Find an expression for the maximal value of \\(\\sqrt{a}\\) in terms of \\(x,b,c\\).<br>
+            (Reminder: if you want to enter the product of variables, ie. \\(bx\\), please type 
+            <span class="mono">b*x</span> and not <span class="mono">bx</span>).`,
         answerType: AnswerType.FUNCTION,
         signatureTests: [{x: 1.2, b: 6.4,  c: 25.6}, {x: 1.3, b: -5.1,  c: 13.6}, {x: -0.9, b: 5.4,  c: -10}, {x: -1.1, b: 5.9,  c: 3.8}],
         isTutorial: false
     },
     {
         id: "infsum",
-        prompt: `(Q7) \\[\\lim_{N\\to\\infty}\\sum^
+        prompt: `\\[\\lim_{N\\to\\infty}\\sum^
             {\\lfloor{\\sum^N_{k=1}{\\frac{1}{k}}}\\rfloor}_
             {{n=\\lceil\\sum^N_{k=1}\\frac{1}{2^k}}\\rceil}
-            \\frac{\\left[\\lim_{a\\to\\infty}\\left(1+\\frac{i}{a}\\right)^a\\right]^{n \\pi i}}{n}= ?\\]`,
+            \\frac{\\left[\\lim_{a\\to\\infty}\\left(1+\\frac{i}{a}\\right)^a\\right]^{n \\pi i}}{n}= ?\\]
+            \\[(\\text{where } i^2 = -1)\\]`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
         id: "epsdelta",
-        prompt: `(Q8) \\[\\lim_{a\\to -x} f(a) = \\varepsilon\\] 
-            \\[\\iff \\forall \\delta > 0, \\exists L > 0,\\]
-            \\[|a-?| < L \\implies |f(a)-\\varepsilon| < \\delta
-            \\]
-            What should ? be?`,
+        prompt: `\\[f(x) = \\frac{x^2-2x+1}{x^2-1}\\]
+        For any \\(0 <|\\varepsilon| < 1\\), define \\(S = \\{x \\in \\mathbb{R} : |f(x)| < \\varepsilon\\}\\). <br>
+        In terms of \\(\\varepsilon\\), \\(\\inf{S} + \\sup{S} = ?\\)<br>
+        You can enter the \\(\\varepsilon\\) symbol by typing <span class="mono">epsilon</span>.`,
         answerType: AnswerType.FUNCTION,
-        signatureTests: [{"x": 1, "a": 1, "L": 2}, {"x": 1.0001, "a": 1.0001, "L": 2.0002}, {"x": 3, "a": 2, "L": 5}, 
-        {"x": -1, "a": -2, "L": 3}, {"x": 50, "a": 2, "L": 52}, {"x": 1000, "a": -1, "L": 49}],
+        signatureTests: [{"epsilon": -0.9}, {"epsilon": -0.6}, {"epsilon": -0.4}, {"epsilon": -0.2}, {"epsilon": 0.2}, {"epsilon": 0.4},
+        {"epsilon": 0.6}, {"epsilon": 0.8}, {"epsilon": 1/Math.PI}, {"epsilon": 1/Math.E}],
         isTutorial: false
     },
     {
         id: "group",
-        prompt: `(Q9) Suppose we have a vector space \\(V\\) over an infinite field \\(Q\\). It is known that \\(|V|=k\\), where \\(k\\) is a
+        prompt: `Suppose we have a vector space \\(V\\) over an infinite field \\(Q\\). It is known that \\(|V|=k\\), where \\(k\\) is a
         well-defined number. What is the value of \\(|V|\\)? Give your answer as a numerical value, not in terms of \\(k\\).`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
@@ -135,14 +136,14 @@ let questionsData = [
     },
     {
         id: "eoneon",
-        prompt: `(Q10) If \\(\\text{eon}\\,\\text{eon}-\\text{eon}=1\\), and \\(\\text{eon}<0\\), what is the value of \\(\\text{eon}\\,\\text{eon}\\)?`,
+        prompt: ` If \\(\\text{eon}\\,\\text{eon}-\\text{eon}=1\\), and \\(\\text{eon}<0\\), what is the value of \\(\\text{eon}\\,\\text{eon}\\)?`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
         id: "radconv",
-        prompt: `(Q11) What is the radius of convergence of the Maclaurin series of 
+        prompt: `What is the radius of convergence of the Maclaurin series of 
         \\(f(x)=\\frac{x^p}{\\sqrt[q]{a+bx^r}}\\) where 
             \\(p,q,r \\in \\mathbb{Z}^+\\), and \\(a,b \\in \\mathbb{R} - \\{0\\}\\)? Give a closed-form
             solution (no limits, summations, etc) in terms of \\(p,q,r,a,b\\).`,
@@ -161,18 +162,19 @@ let questionsData = [
     },
     {
         id: "unwin",
-        prompt: `(Q12) UnWin is very rude and wants to strong-slap every person from a group of 8
-        <b>at least twice</b>. He has the energy to do 32 strong-slaps. In how many ways can he 
-        distribute the 32 strong-slaps? <b>The order in which he strong-slaps does not matter</b>.
-        (ie, all configurations where each person receives the same amount of slaps 
-        should be counted together as one way).`,
+        prompt: `UnWin is very rude and wants to strong-slap some people.<br>
+        There is one group of 4 people,
+        each of whom he intends to strong-slap twice, <i>and twice only</i>. Then, there is another group of 4 other people,
+        to which UnWin intends to strong-slap a total of 8 times, but he can distribute the strong-slaps among them however
+        he wants. For instance, in that group, some people there may receive more strong-slaps than others, or none at all.<br>
+        How many ways can he strong-slap these people? The order in which he strong-slaps <b>does</b> matter.`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
     },
     {
         id: "meaninglife",
-        prompt: `(Q13) What is the meaning of \\(\\text{life}\\) if the following always holds true and we
+        prompt: `What is the meaning of \\(\\text{life}\\) if the following always holds true and we
         assume "meaning" is the same as "value"?
         \\[(\\text{life}<1) \\lor \\left(\\sum_{k=1}^\\infty \\frac{1}{k^\\text{life}} \\text{ converges}\\right)\\]
         \\[\\implies 1+2+3+4+\\cdots=-\\frac{1}{12}\\]`,
@@ -182,7 +184,7 @@ let questionsData = [
     },
     {
         id: "coprime",
-        prompt: `(Q14) How many numbers between \\(1\\) and \\(2^{\\text{The answer to life the universe and everything}}\\)
+        prompt: `How many numbers between \\(1\\) and \\(2^{\\text{The answer to life the universe and everything}}\\)
         (according to Google's calculator, at least) are not coprime with \\(69\\) 
         (ie, they share at least one commmon factor that is not \\(1\\))?`,
         answerType: AnswerType.NUMBER,
@@ -191,7 +193,7 @@ let questionsData = [
     },
     {
         id: "limsequence",
-        prompt: `(Q15) For \\(c>0\\), consider the sequence:
+        prompt: `For \\(c>0\\), consider the sequence:
         \\[a_0=\\alpha\\]
         \\[a_{n+1}=\\lim_{m\\to\\infty}\\left(1+\\frac{ca_n}{m}\\right)^m\\]
 
@@ -204,7 +206,7 @@ let questionsData = [
     },
     {
         id: "oldquiz",
-        prompt: `(Q16) Let \\(S = \\{x\\in\\mathbb{Z} : P(x)\\}\\), where \\(P(x)\\) is true if and only if \\(x\\) was an answer
+        prompt: `Let \\(S = \\{x\\in\\mathbb{Z} : P(x)\\}\\), where \\(P(x)\\) is true if and only if \\(x\\) was an answer
         to the <b>very easy mathematics and human aptitude verification test</b> (available 
             <a href="https://cag2mark.github.io/MathsTest/" target="_blank">here</a>.) What is \\(|S \\times S|\\)?`,
         answerType: AnswerType.NUMBER,
@@ -213,7 +215,7 @@ let questionsData = [
     },
     {
         id: "sunmass",
-        prompt: `(Q17) David has 4 apples. His train is 7 minutes early. What is the mass of the sun in yottagrams?
+        prompt: `David has 4 apples. His train is 7 minutes early. What is the mass of the sun in yottagrams?
         Give your answer to 3 significant figures (you may use scientific notation). Do not enter units.`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
@@ -221,8 +223,7 @@ let questionsData = [
     },
     {
         id: "nerdsnipe",
-        prompt: `(Q18)<br>
-            <img src="assets/q18.png" style="width: 400px; max-width: 90%" id="q18-image"><br>
+        prompt: `<img src="assets/q18.png" style="width: 400px; max-width: 90%" id="q18-image"><br>
             In the original image, what is in the place of the red question mark? Give the answer <b>exactly</b>. (Hint: reverse image search exists)`,
         answerType: AnswerType.EXACT,
         signatureTests: null,
@@ -230,8 +231,7 @@ let questionsData = [
     },
     {
         id: "integral",
-        prompt: `(Q19)<br>
-            What is the value of the following definite integral?
+        prompt: `What is the value of the following definite integral?
              \\[\\int^\\infty_{-\\infty} \\pi^{-|\\equiv|}\\, \\mathrm{d} \\equiv \\]`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
@@ -239,7 +239,7 @@ let questionsData = [
     },
     {
         id: "bessel",
-        prompt: `(Q20) Have a feel of my Calculus II final. Credit goes to my... <i>interesting</i> professor. Define the Bessel function as follows:
+        prompt: `Have a feel of my Calculus II final. Credit goes to my... <i>interesting</i> professor. Define the Bessel function as follows:
         \\[J_n(x) = \\sum_{k=0}^\\infty \\frac{(-1)^k (\\frac{x}{2})^{2k+n}}{k!(n+k)!}\\]
         Let \\(f(x) = J_\\frac{1}{2}(x) + J_{-\\frac{1}{2}}(x)\\) for real \\(x > 0\\). Express \\(f(x)\\) in terms of elementary functions. You
         will need the results \\(\\left(\\frac{1}{2}\\right)! = \\sqrt \\pi\\) and \\(n! = n(n-1)!\\).`,
@@ -266,7 +266,7 @@ class Question {
         this.inputBox = node.getElementsByClassName("question-input")[0];
         this.answerPreview = node.getElementsByClassName("question-answer-preview")[0];
 
-        this.promptBox.innerHTML = this.prompt;
+        this.promptBox.innerHTML = (isTutorial ? "" : `(Q${qNum})<br>`) + this.prompt;
 
         this.inputBox.addEventListener("keyup", (e) => {
             this.updateAnswer();
@@ -295,7 +295,9 @@ class Question {
                 .toString()
                 .replaceAll("~", "")
                 .replaceAll("varphi", "phi") // remove ugly default phi
-                .replaceAll("phi", "varphi");
+                .replaceAll("phi", "varphi")
+                .replaceAll("varepsilon", "epsilon")
+                .replaceAll("epsilon", "varepsilon");
             if (this.answerType == AnswerType.NUMBER) {
                 let evaled_ = math.evaluate(answer);
                 let evaled = evaled_.toFixed(6);

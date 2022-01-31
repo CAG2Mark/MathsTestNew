@@ -28,9 +28,9 @@ function transition(index) {
 
     document.getElementById("back").style.display = slide == 0 ? "none" : "block";
     document.getElementById("forward").style.display = slide == (children.length - 1) ? "none" : "block";
-    document.getElementById("skip-questions").style.display = 0 < slide && slide < startingSlideCnt? "block" : "none";
+    document.getElementById("skip-questions").style.display = 0 < slide && slide < startingSlideCnt ? "block" : "none";
     questionNumberInput.style.display = startingSlideCnt <= slide && (slide <= questionsData.length) ? "block" : "none"
-    questionNumberInput.value = slide - 4;
+    questionNumberInput.value = slide - startingSlideCnt + 1;
 
     let s2Anim = ltoR ? "right-in" : "left-in";
     let s1Anim = !ltoR ? "right-out" : "left-out";
@@ -64,7 +64,7 @@ document.getElementById("skip-questions").addEventListener("click", (o,e) => {
 
 function handleQuestionNumberChange() {
     if (!Number.isInteger(parseInt(questionNumberInput.value))) return;
-    transition(parseInt(questionNumberInput.value)+ startingSlideCnt - 1);
+    transition(parseInt(questionNumberInput.value) + startingSlideCnt - 1);
 }
 
 questionNumberInput.addEventListener("focusout", (e) => {
