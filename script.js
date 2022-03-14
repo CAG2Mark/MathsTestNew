@@ -2,7 +2,7 @@
 
 // Initialises everything and keeps everything running. 
 
-const ANS_HASH = "d8949bbf0b0377bea403a272eeda0ee71f8b9c76520deac6b8fc8b11aca2fcec";
+const ANS_HASH = "28b1b9bba54fd517fbeb360204baeda3ae8fc7d3f8ae90140aecdf5393534f8f";
 
 // Source: https://stackoverflow.com/questions/51531021/javascript-aes-encryption-and-decryption-advanced-encryption-standard
 
@@ -74,13 +74,15 @@ function checkAnswers() {
         }
     }
 
-    let hash = sha256(val);
+    let hash1 = sha256(val);
+    let hash2 = sha256(hash1);
 
-    console.log(hash);
+    console.log(hash1);
+    console.log(hash2);
     console.log(val);
 
-    if (hash == ANS_HASH) {
-        let enc = code.encryptMessage(ign, val);
+    if (hash2 == ANS_HASH) {
+        let enc = code.encryptMessage(ign, hash1);
         document.getElementById("code-out").innerHTML = enc;
         showPage(correctPage);
     }

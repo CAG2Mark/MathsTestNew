@@ -121,6 +121,10 @@ button:focus {
     font-size: 1em !important;
 }
 
+.cjk_fallback {
+    font-family: 'Noto Serif TC', serif !important;
+}
+
 #back {
     left: var(--button-margin);
 }

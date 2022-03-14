@@ -111,6 +111,16 @@ function areSameFloats(x, y) {
     return signaturesEqual(numSignature(x), numSignature(y));
 }
 
+function paramsToStr(p) {
+    let entries = Object.keys(p);
+    let ret = "[";
+    for (let i = 0; i < entries.length; ++i) {
+        if (i != 1) ret += ","
+        ret += `${entries[i]}:${numSigToString(numSignature(p[entries[i]]))}`;
+    }
+    return ret + "]";
+}
+
 class MathFunction {
     constructor(func) {
         this.func = func;
@@ -126,7 +136,7 @@ class MathFunction {
         let signature = [];
         for (let i = 0; i < vals.length; ++i) {
             let f = math.evaluate(this.func, vals[i]);
-            signature.push(numSignature(f));
+            signature.push({signature: numSignature(f), params: vals[i]});
         }
         return signature;
     }
@@ -136,7 +146,7 @@ class MathFunction {
         let signature = this.getSignature(vals);
         for (let i = 0; i < signature.length; ++i) {
             let point = signature[i];
-            ret += numSigToString(point);
+            ret += `{${numSigToString(point.signature)},{${paramsToStr(point.params)}}}`;
             if (i != signature.length - 1) ret += ',';
         }
         ret += ']';

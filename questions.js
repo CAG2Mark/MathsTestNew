@@ -88,9 +88,10 @@ let questionsData = [
     },
     {
         id: "derivative",
-        prompt: `\\(\\frac{\\mathrm{d}d^d}{\\mathrm{d}d} = ?\\) Answer as a fuction of \\(d\\).`,
-        answerType: AnswerType.FUNCTION,
-        signatureTests: [{d: 10}, {d: 2}, {d: 3}, {d: 10.4}, {d: 10}, {d: Math.E}],
+        prompt: `\\[一(己,已,巳)=\\frac{(己+已)(已+巳)(巳+己)}{己已巳}\\]
+        \\[\\frac{\\partial^2一(己,已,巳)}{\\partial己\\partial已}|_{(己,已,巳)=(1,2,3)}=?\\]`,
+        answerType: AnswerType.NUMBER,
+        signatureTests: null,
         isTutorial: false
     },
     {
@@ -118,8 +119,8 @@ let questionsData = [
     {
         id: "epsdelta",
         prompt: `\\[f(x) = \\frac{x^2-2x+1}{x^2-1}\\]
-        For any \\(0 <|\\varepsilon| < 1\\), define \\(S = \\{x \\in \\mathbb{R} : |f(x)| < \\varepsilon\\}\\). <br>
-        In terms of \\(\\varepsilon\\), \\(\\inf{S} + \\sup{S} = ?\\)<br>
+        For any \\(0 <|\\varepsilon| < 1\\), define \\(S_\\varepsilon = \\{x \\in \\mathbb{R} : |f(x)| < \\varepsilon\\}\\). <br>
+        In terms of \\(\\varepsilon\\), \\(\\inf{S_\\varepsilon} + \\sup{S_\\varepsilon} = ?\\)<br>
         You can enter the \\(\\varepsilon\\) symbol by typing <span class="mono">epsilon</span>.`,
         answerType: AnswerType.FUNCTION,
         signatureTests: [{"epsilon": -0.9}, {"epsilon": -0.6}, {"epsilon": -0.4}, {"epsilon": -0.2}, {"epsilon": 0.2}, {"epsilon": 0.4},
@@ -164,9 +165,9 @@ let questionsData = [
         id: "unwin",
         prompt: `UnWin is very rude and wants to strong-slap some people.<br>
         There is one group of 4 people,
-        each of whom he intends to strong-slap twice, <i>and twice only</i>. Then, there is another group of 4 other people,
+        each of whom he intends to strong-slap <i>exactly</i> twice. Then, there is another group of 4 <b>other</b> people,
         to which UnWin intends to strong-slap a total of 8 times, but he can distribute the strong-slaps among them however
-        he wants. For instance, in that group, some people there may receive more strong-slaps than others, or none at all.<br>
+        he wants. For instance, in that group, some people may receive more strong-slaps than others, or none at all.<br>
         How many ways can he strong-slap these people? The order in which he strong-slaps <b>does</b> matter.`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
@@ -197,7 +198,7 @@ let questionsData = [
         \\[a_0=\\alpha\\]
         \\[a_{n+1}=\\lim_{m\\to\\infty}\\left(1+\\frac{ca_n}{m}\\right)^m\\]
 
-        For which value of \\(c \\in \\mathbb{R}\\) is there a unique \\(L \\in \\mathbb{R}\\) such that \\(\\forall \\alpha \\in \\mathbb{R}\\), 
+        For which value of \\(c \\in \\mathbb{R}\\) is there some <i>unique</i> \\(L \\in \\mathbb{R}\\) such that \\(\\forall \\alpha \\in \\mathbb{R}\\), 
         \\(\\lim_{n\\to\\infty} a_n \\text{ converges} \\implies \\lim_{n\\to\\infty} a_n = L\\)?
         Give your answer as the value of \\(c\\).`,
         answerType: AnswerType.NUMBER,
@@ -239,7 +240,7 @@ let questionsData = [
     },
     {
         id: "bessel",
-        prompt: `Have a feel of my Calculus II final. Credit goes to my... <i>interesting</i> professor. Define the Bessel function as follows:
+        prompt: `Have a feel of my Calculus II final. Credit goes to my... <i>interesting</i> professor. Define the Bessel function of the \\(n\\)th order as follows:
         \\[J_n(x) = \\sum_{k=0}^\\infty \\frac{(-1)^k (\\frac{x}{2})^{2k+n}}{k!(n+k)!}\\]
         Let \\(f(x) = J_\\frac{1}{2}(x) + J_{-\\frac{1}{2}}(x)\\) for real \\(x > 0\\). Express \\(f(x)\\) in terms of elementary functions. You
         will need the results \\(\\left(\\frac{1}{2}\\right)! = \\sqrt \\pi\\) and \\(n! = n(n-1)!\\).`,
