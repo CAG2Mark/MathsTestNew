@@ -7,6 +7,7 @@ var slide = 0;
 var startCnt = document.getElementsByClassName("starting-slide").length;
 var startingSlideCnt = startCnt + tutorialQuestionsCnt;
 
+// FYI this is very dirty
 function transition(index) {
     if (index == slide) return;
 
@@ -25,12 +26,15 @@ function transition(index) {
         document.getElementById("error-page").classList.add("end-page-hidden");
     }
 
+    let qNo = slideQuesNo[index];
 
     document.getElementById("back").style.display = slide == 0 ? "none" : "block";
     document.getElementById("forward").style.display = slide == (children.length - 1) ? "none" : "block";
     document.getElementById("skip-questions").style.display = 0 < slide && slide < startingSlideCnt ? "block" : "none";
-    questionNumberInput.style.display = startingSlideCnt <= slide && (slide <= questionsData.length + startCnt - 1) ? "block" : "none"
-    questionNumberInput.value = slide - startingSlideCnt + 1;
+
+    questionNumberInput.style.display = qNo != 0 ? "block" : "none";
+
+    questionNumberInput.value = slideQuesNo[index];
 
     let s2Anim = ltoR ? "right-in" : "left-in";
     let s1Anim = !ltoR ? "right-out" : "left-out";
@@ -63,8 +67,11 @@ document.getElementById("skip-questions").addEventListener("click", (o,e) => {
 });
 
 function handleQuestionNumberChange() {
-    if (!Number.isInteger(parseInt(questionNumberInput.value))) return;
-    transition(parseInt(questionNumberInput.value) + startingSlideCnt - 1);
+    let input = questionNumberInput.value;
+    let n;
+    if (!Number.isInteger(n = parseInt(input))) return;
+    if (n <= 0 || n > questions.length - tutorialQuestionsCnt) return;
+    transition(quesSlideNo[n]);
 }
 
 questionNumberInput.addEventListener("focusout", (e) => {

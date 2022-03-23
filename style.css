@@ -5,7 +5,7 @@
 body,
 html,
 #wrap {
-    font: 40px "Computer Modern Serif", serif;
+    font: 36px "Computer Modern Serif", serif;
     user-select: none;
     -webkit-user-select: none;
 
@@ -79,7 +79,7 @@ html,
     -moz-border-radius: 40px;
     -ms-border-radius: 40px;
     -o-border-radius: 40px;
-    font-size: 40px !important;
+    font-size: 36px !important;
 }
 
 button {
@@ -275,7 +275,7 @@ p {
 input {
     width: 800px;
     padding: 0px 8px 0 8px;
-    font: 40px "Roboto Mono", Consolas, monospace;
+    font: 36px "Roboto Mono", Consolas, monospace;
     border-radius: 6px;
     border-width: 2px;
     border-color: #CCCCCC;
@@ -370,7 +370,7 @@ body.dark-mode,
     width: 100%;
     height: calc(100% - 56px);
     margin-top: 56px;
-    overflow-x: scroll;
+    overflow-y: auto;
     position: absolute;
     display: flex !important;
     justify-content: center;
@@ -423,6 +423,37 @@ body.dark-mode,
     margin-top: 55px;
 }
 
+.checkpoint-error {
+    display: inline-block;
+    text-align: center;
+}
+.checkpoint > h2 {
+    margin-bottom: 4px;
+}
+.checkpoint p {
+    margin-bottom: 0;
+}
+.checkpoint-error > p {
+    width: 100%;
+}
+.checkpoint-hidden {
+    display: none !important;
+}
+.dark-mode .checkpoint-msg-container {
+    border: solid 2px rgb(124, 124, 124); 
+}
+.checkpoint-msg-container {
+    transition: 300ms border-color, 300ms background, 300ms color;
+    padding: 16px;
+    border-radius: 10px;
+    border: solid 2px rgb(92, 92, 92);
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    max-width: calc(90% - 32px);
+}
+
+
 @media (max-height: 900px) {
     :root {
         --button-margin: 8px;
@@ -436,7 +467,6 @@ body.dark-mode,
 
     input {
         font: 24px "Roboto Mono", Consolas, monospace;
-        width: 90%;
     }
 
     .round-button {
@@ -461,7 +491,7 @@ body.dark-mode,
     }
 
     .question-text {
-        margin-bottom: 4px;
+        margin-bottom: 8px;
     }
 
     .slide {

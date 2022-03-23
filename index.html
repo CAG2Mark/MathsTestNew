@@ -36,6 +36,21 @@
         <p>Your answer: <span class="question-answer-preview"></span></p>
     </div>
 
+    <div id="checkpoint-template" class="slide checkpoint">
+        <h2>Checkpoint <span class="checkpoint-number"></span></h2>
+        <button class="checkpoint-button">Check Answers</button>
+        <div class="checkpoint-msg-container checkpoint-hidden">
+            <p class="checkpoint-correct checkpoint-hidden">All questions thus far are correct.</p>
+            <p class="checkpoint-incorrect checkpoint-hidden">Sorry, at least one thus far is incorrect.</p>
+            <div class="checkpoint-error checkpoint-hidden">
+                <p>There was an error evaluating your answer for question 
+                    #<span class="checkpoint-error-num"></span>.</p>
+                <button class="checkpoint-error-redirect-button">Take me there.</button>
+            </div>
+        </div>
+
+    </div>
+
     <div id="top-row">
         <form action="https://github.com/CAG2Mark/MathsTestNew" method="get" target="_blank">
             
@@ -185,7 +200,6 @@
     </div>
 
     <div id="wrap">
-
         <div class="slide question starting-slide" id="name-entry">
             <p class="question-text">Please enter your nickname</p>
             <input type="text" id="ign-input" class="question-input">

@@ -2,8 +2,6 @@
 
 // Initialises everything and keeps everything running. 
 
-const ANS_HASH = "28b1b9bba54fd517fbeb360204baeda3ae8fc7d3f8ae90140aecdf5393534f8f";
-
 // Source: https://stackoverflow.com/questions/51531021/javascript-aes-encryption-and-decryption-advanced-encryption-standard
 
 
@@ -47,39 +45,36 @@ function showPage(page) {
 var latestErrorQuestion = 0;
 
 document.getElementById("error-redirect-button").addEventListener("click", () => {
-    transition(latestErrorQuestion + startingSlideCnt - 1);
+    transition(quesSlideNo[latestErrorQuestion]);
 });
 
-function checkAnswers() {
+// n specifies which question you should check up to
+// checks up to and including
+function checkAnswers(n = -1) {
     let ign = ignInput.value;
-    let val = "";
 
     if (!ign.trim()) {
         alert("Please enter your IGN on the first page.")
         return;
     }
-    
-    for (var i = 0; i < questions.length; ++i) {
-        let q = questions[i];
-        if (q.isTutorial) continue;
-        try {
-            val += q.getAnswer() + ";";
-        }
-        catch (error) {
-            document.getElementById("error-question-num").innerHTML = q.qNum;
-            latestErrorQuestion = q.qNum;
-            showPage(errorPage);
-            console.log(error);
-            return;
-        }
+
+    let { val, errorQs } = getConcatedAnswers(n);
+
+    if (!val) {
+        // error
+        document.getElementById("error-question-num").innerHTML = errorQs;
+        latestErrorQuestion = errorQs;
+        showPage(errorPage);
+        return;
     }
+
+    console.log(val);
 
     let hash1 = sha256(val);
     let hash2 = sha256(hash1);
 
     console.log(hash1);
     console.log(hash2);
-    console.log(val);
 
     if (hash2 == ANS_HASH) {
         let enc = code.encryptMessage(ign, hash1);
@@ -91,7 +86,25 @@ function checkAnswers() {
     }
 }
 
-finishButton.addEventListener("click", checkAnswers);
+function getConcatedAnswers(n = -1) {
+    let val = "";
+    let upper = n == -1 ? questions.length : n + tutorialQuestionsCnt;
+
+    for (var i = 0; i < upper; ++i) {
+        let q = questions[i];
+        if (q.isTutorial) continue;
+        try {
+            val += q.getAnswer() + ";";
+        }
+        catch (error) {
+            return {val: null, errorQs: q.qNum}
+        }
+    }
+
+    return {val: val, errorQs: 0};
+}
+
+finishButton.addEventListener("click", () => checkAnswers());
 
 ignInput.addEventListener("focusout", (e) => {
     config.ign = ignInput.value;
@@ -105,3 +118,14 @@ document.getElementById("q18-image").addEventListener("contextmenu", (e) => {
     alert("You really thought I would let you reverse image search it directly? Lmao no")
     document.body.classList.add("LMAO-you-are-doing-the-inspect-element-of-shame-after-right-clicking-question-18s-image")
 });
+
+function createHashes() {
+    let script = document.createElement('script');
+    script.src = 'correctanswers.js';
+    document.body.append(script);
+
+    setTimeout(() => {
+        printHashes();    
+    }, 100);
+    
+}

@@ -4,7 +4,8 @@ const AnswerType = {
     EXACT: 2
 }
 
-var template = document.getElementById("question-template");
+var quesTemplate = document.getElementById("question-template");
+var checkpointTemplate = document.getElementById("checkpoint-template");
 
 let questionsData = [
     {
@@ -164,11 +165,12 @@ let questionsData = [
     {
         id: "unwin",
         prompt: `UnWin is very rude and wants to strong-slap some people.<br>
-        There is one group of 4 people,
-        each of whom he intends to strong-slap <i>exactly</i> twice. Then, there is another group of 4 <b>other</b> people,
-        to which UnWin intends to strong-slap a total of 8 times, but he can distribute the strong-slaps among them however
-        he wants. For instance, in that group, some people may receive more strong-slaps than others, or none at all.<br>
-        How many ways can he strong-slap these people? The order in which he strong-slaps <b>does</b> matter.`,
+        There is a group of 16 people, and UnWin has enough energy to deliver
+        32 strong-slaps to this group. Each person must be strong-slapped at least 
+        once, but some may get more strong-slaps than others.
+        <br>
+        How many ways can UnWin distribute the strong-slaps? The order in which he
+        strong-slaps does not matter.`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
@@ -250,13 +252,26 @@ let questionsData = [
     },
 ];
 
+// after question p, q, r, etc
+var cp_pos = [4,6,8,12,16];
+
+const ANS_HASH = "d5be5a57e4b116e441cb02bb79beb5710bde34f83eceb8766ee0fef98c6fc5ae";
+const CHECKPOINT_HASHES = [
+    'ec830509a9e53a9a4c8017e23d1a0eaa0e7006cceca2097ce319aa4a422af1b6', 
+    'ec85db04f87072550813744a428b258a20dc45cc7856269cb4db43e7554fca8c', 
+    '39aae1774abd07bd7f59c6fe255d6ba7e3e0c112c61af8afbcd453a34b54331e', 
+    'ad2ffa1ca669119e7e59d93e4216e4c049bc1960c996cee56a375d7523210f43', 
+    '2ff281e6818ce35d6c5e944631c29c5fd9fa333e36e31a612877760829ecbeb7'
+];
+
 class Question {
+
     constructor(id, qNum, prompt, answerType, signatureTests = null, isTutorial=false, tutorialAnswer=null) {
         this.id = id;
         this.qNum = qNum;
         this.prompt = prompt;
         this.answerType = answerType;
-        let node = template.cloneNode(true);
+        let node = quesTemplate.cloneNode(true);
         node.removeAttribute("id");
         this.node = node;
         this.signatureTests = signatureTests;
@@ -369,6 +384,102 @@ class Question {
     }
 }
 
+var questions = [];
+
+class Checkpoint {
+    constructor(number, position, correct_hash) {
+        this.number = number;
+        this.position = position;
+        this.correct_hash = correct_hash;
+
+        let node = checkpointTemplate.cloneNode(true);
+        node.removeAttribute("id");
+        this.node = node;
+
+        this.getNodeItem("checkpoint-number").innerHTML = number + 1;
+
+        this.getNodeItem("checkpoint-button").addEventListener("click", (e) => this.checkQuestions());
+
+        this.pages = [
+            this.getNodeItem("checkpoint-correct"),
+            this.getNodeItem("checkpoint-incorrect"),
+            this.getNodeItem("checkpoint-error"),
+        ]
+
+        this.msgContainer = this.getNodeItem("checkpoint-msg-container");
+
+        this.errorNoElem = this.getNodeItem("checkpoint-error-num");
+        this.errorBtn = this.getNodeItem("checkpoint-error-redirect-button");
+
+        this.errorBtn.addEventListener("click", (e) => {
+            transition(quesSlideNo[this.latestErrorQues]);
+        })
+    }
+
+    getNodeItem(className) {
+        return this.node.getElementsByClassName(className)[0];
+    }
+
+    // show by id
+    showPage(n) {
+        this.pages[n].classList.remove("checkpoint-hidden");
+        for (let i = 0; i < this.pages.length; ++i) {
+            if (i == n) continue;
+            this.pages[i].classList.add("checkpoint-hidden");
+        }
+    }
+
+    checkQuestions() {
+        
+        this.msgContainer.classList.remove("checkpoint-hidden");
+
+        // questions must be initialised
+        let {val, errorQs} = getConcatedAnswers(this.position);
+        
+        if (!val) {
+            this.showPage(2);
+            this.errorNoElem.innerHTML = errorQs;
+            this.latestErrorQues = errorQs;
+            return;
+        }
+        let hash = sha256(val);
+
+        if (hash == CHECKPOINT_HASHES[this.number]) this.showPage(0);
+        else this.showPage(1);
+    }
+
+    getNode() {
+        return self.node;
+    }
+}
+
+// gets the number of checkpoints before the current question, assume cp_pos is sorted
+// questionNo is 1-indexed
+function getCheckpointCount(questionNo) {
+    if (questionNo > cp_pos[cp_pos.length - 1]) return cp_pos.length;
+    if (questionNo <= cp_pos[0]) return 0;
+
+    // binary search
+    let lower = 0;
+    let upper = cp_pos.length - 1;
+    let cur_pos = Math.floor((lower + upper) / 2);
+
+    let lower_smaller, upper_bigger; 
+    while (!(
+        (lower_smaller = cp_pos[cur_pos-1] < questionNo) && 
+        (upper_bigger = questionNo <= cp_pos[cur_pos])
+        )) {
+
+        if (lower_smaller && !upper_bigger) 
+            lower = cur_pos + 1;
+        else 
+            upper = cur_pos - 1;
+
+        cur_pos = Math.floor((lower + upper) / 2);
+    }
+    return cur_pos;
+}
+
 var questionNumberInput = document.getElementById("question-number");
 
 // init questions
@@ -377,23 +488,50 @@ var body = document.body;
 var wrap = document.getElementById("wrap");
 var insertLoc = document.getElementById("questions-end");
 
-var questions = [];
 var tutorialQuestionsCnt = 0;
 
-for (let i = 0; i < questionsData.length; ++i) {
+let cp_ind = 0;
+
+// generate the slide types here... anything other than a positive integer is not a question
+let slideQuesNo = Array(document.getElementsByClassName("starting-slide").length).fill(0);
+
+let quesSlideNo = Array(questionsData.length);
+
+for (let i = 0, curSlideNo = slideQuesNo.length; i < questionsData.length; ++i, ++curSlideNo) {
     let q = questionsData[i];
     
     if (q.isTutorial) ++tutorialQuestionsCnt;
+
+    let questionNumber = i - tutorialQuestionsCnt + 1;
     
-    let question = new Question(q.id, i + 1 - tutorialQuestionsCnt, q.prompt, q.answerType, q.signatureTests, q.isTutorial, q.tutorialAnswer);
+    let question = new Question(
+        q.id, i + 1 - tutorialQuestionsCnt, q.prompt, q.answerType, 
+        q.signatureTests, q.isTutorial, q.tutorialAnswer
+        );
+        
     questions.push(question);
-    let ans;
-    if (ans = config.questionAnswers[q.id]) 
-    setTimeout(() => {
-        question.setAnswerText(ans);
-    }, 100);
+    slideQuesNo.push(questionNumber);
+    quesSlideNo[questionNumber] = curSlideNo;
+
+    let ans = config.questionAnswers[q.id];
+    if (ans) {
+        // set timeout to let the libraries have time to load
+        setTimeout(() => {
+            question.setAnswerText(ans);
+        }, 100);
+    }
 
     insertLoc.insertAdjacentElement('beforebegin', question.node);
+
+    let next_cp_pos = cp_pos[cp_ind];
+    if (questionNumber == next_cp_pos) {
+        let c = new Checkpoint(cp_ind, next_cp_pos, CHECKPOINT_HASHES[cp_ind]);
+        ++cp_ind;
+        insertLoc.insertAdjacentElement('beforebegin', c.node);
+        slideQuesNo.push(0);
+        ++curSlideNo;
+    }
 }
+slideQuesNo.push(0);
 
 questionNumberInput.setAttribute("max", questions.length);
