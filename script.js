@@ -126,6 +126,15 @@ function createHashes() {
 
     setTimeout(() => {
         printHashes();    
-    }, 100);
-    
+    }, 100);   
+}
+
+function checkCode(input) {
+    let script = document.createElement('script');
+    script.src = 'correctanswers.js';
+    document.body.append(script);
+
+    setTimeout(() => {
+        console.log(code.decryptMessage(input, getFirstHash()));  
+    }, 100); 
 }

@@ -74,8 +74,13 @@ let questionsData = [
         isTutorial: false
     },
     {
-        id: "trig",
-        prompt: `\\(\\arcsin{\\cos{\\left(\\frac{\\pi}{4}^\\circ\\right)}}=?\\) Give your answer in <b>gradians.</b>`,
+        id: "piano",
+        prompt: `
+        <video width="560" height="315" controls>
+            <source src="assets/piano.mp4" type="video/mp4">
+            </video>
+        <br>
+        What is the Opus number of this Chopin piece?`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
@@ -129,9 +134,8 @@ let questionsData = [
         isTutorial: false
     },
     {
-        id: "group",
-        prompt: `Suppose we have a vector space \\(V\\) over an infinite field \\(Q\\). It is known that \\(|V|=k\\), where \\(k\\) is a
-        well-defined number. What is the value of \\(|V|\\)? Give your answer as a numerical value, not in terms of \\(k\\).`,
+        id: "trig",
+        prompt: `\\(\\arcsin{\\cos{\\left(\\frac{\\pi}{4}^\\circ\\right)}}=?\\) Give your answer in <b>gradians.</b>`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
         isTutorial: false
@@ -201,7 +205,8 @@ let questionsData = [
         \\[a_{n+1}=\\lim_{m\\to\\infty}\\left(1+\\frac{ca_n}{m}\\right)^m\\]
 
         For which value of \\(c \\in \\mathbb{R}\\) is there some <i>unique</i> \\(L \\in \\mathbb{R}\\) such that \\(\\forall \\alpha \\in \\mathbb{R}\\), 
-        \\(\\lim_{n\\to\\infty} a_n \\text{ converges} \\implies \\lim_{n\\to\\infty} a_n = L\\)?
+        \\(\\lim_{n\\to\\infty} a_n \\text{ converges} \\implies \\lim_{n\\to\\infty} a_n = L\\)? In other words, for what value of \\(c\\) does the sequence
+        always converge to the same value regardless of the starting value, given that it converges at all?
         Give your answer as the value of \\(c\\).`,
         answerType: AnswerType.NUMBER,
         signatureTests: null,
@@ -255,14 +260,8 @@ let questionsData = [
 // after question p, q, r, etc
 var cp_pos = [4,6,8,12,16];
 
-const ANS_HASH = "d5be5a57e4b116e441cb02bb79beb5710bde34f83eceb8766ee0fef98c6fc5ae";
-const CHECKPOINT_HASHES = [
-    'ec830509a9e53a9a4c8017e23d1a0eaa0e7006cceca2097ce319aa4a422af1b6', 
-    'ec85db04f87072550813744a428b258a20dc45cc7856269cb4db43e7554fca8c', 
-    '39aae1774abd07bd7f59c6fe255d6ba7e3e0c112c61af8afbcd453a34b54331e', 
-    'ad2ffa1ca669119e7e59d93e4216e4c049bc1960c996cee56a375d7523210f43', 
-    '2ff281e6818ce35d6c5e944631c29c5fd9fa333e36e31a612877760829ecbeb7'
-];
+const ANS_HASH = "ec24c20bb9e91134478065ead310cfc8e3403e8c3be087d6c93399ee5b941063";
+const CHECKPOINT_HASHES = ['fbacaf416e5379ce20c063c4540a0a25b0f62a7b6adf801e6eab3bb121f09201', '9839e0aed4e6a716ec97fed6c63fa3de2a666536d792afe497b7c0039fcec620', 'b96b53e0add78d79b6384ae9ac7e1ca49b837568e9913f4022d00322e1fec615', '347d56de83085a7a965c56d3451c105955d9988f114145df337f33500cd2c399', '688dc7a8a4d915a4e04a0569d3611e0e00474c8dbde32aa45f56cec6876eb391'];
 
 class Question {
 
