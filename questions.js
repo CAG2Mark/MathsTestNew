@@ -250,7 +250,7 @@ let questionsData = [
         prompt: `Have a feel of my Calculus II final. Credit goes to my... <i>interesting</i> professor. Define the Bessel function of the \\(n\\)th order as follows:
         \\[J_n(x) = \\sum_{k=0}^\\infty \\frac{(-1)^k (\\frac{x}{2})^{2k+n}}{k!(n+k)!}\\]
         Let \\(f(x) = J_\\frac{1}{2}(x) + J_{-\\frac{1}{2}}(x)\\) for real \\(x > 0\\). Express \\(f(x)\\) in terms of elementary functions. You
-        will need the results \\(\\left(\\frac{1}{2}\\right)! = \\sqrt \\pi\\) and \\(n! = n(n-1)!\\).`,
+        will need the results \\(\\left(\\-frac{1}{2}\\right)! = \\sqrt \\pi\\) and \\(n! = n(n-1)!\\) for \\(n \\in \\mathbb{R}\\).`,
         answerType: AnswerType.FUNCTION,
         signatureTests: [{x: 1}, {x: 1.5}, {x: Math.PI}, {x: 2}, {x: 3}, {x: 1000}, {x: 0.1}, {x: 0.01}],
         isTutorial: false
