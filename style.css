@@ -423,6 +423,14 @@ body.dark-mode,
     margin-top: 55px;
 }
 
+.checkpoint-correct {
+    text-align: center;
+}
+.checkpoint-correct p {
+    text-align: center;
+    margin-bottom: 4px !important;
+    width: 100%;
+}
 .checkpoint-error {
     display: inline-block;
     text-align: center;
@@ -499,11 +507,11 @@ body.dark-mode,
     }
 }
 
-.dark-mode #code-out {
+.dark-mode .code-out {
     background-color: #353535;
 }
 
-#code-out {
+.code-out {
     transition: 300ms background-color, 300ms color;
 
     font: 20px 'Roboto Mono', Consolas, monospace;

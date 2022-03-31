@@ -40,7 +40,10 @@
         <h2>Checkpoint <span class="checkpoint-number"></span></h2>
         <button class="checkpoint-button">Check Answers</button>
         <div class="checkpoint-msg-container checkpoint-hidden">
-            <p class="checkpoint-correct checkpoint-hidden">All questions thus far are correct.</p>
+            <div class="checkpoint-correct checkpoint-hidden">
+                <p>All questions thus far are correct. Checkpoint code:</p>
+                <div class="code-out">stop hacking</div>
+            </div>
             <p class="checkpoint-incorrect checkpoint-hidden">Sorry, at least one thus far is incorrect.</p>
             <div class="checkpoint-error checkpoint-hidden">
                 <p>There was an error evaluating your answer for question 
@@ -234,7 +237,7 @@
                 <p>
                     Congratulations! You got everything correct! DM me the following code for your prize.
                 </p>
-                <div id="code-out">UBAFE9DCB89ADF8EAFEADBCDBFD9C89A==</div>
+                <div class="code-out" id="code-out">UBAFE9DCB89ADF8EAFEADBCDBFD9C89A==</div>
             </div>
 
         </div>

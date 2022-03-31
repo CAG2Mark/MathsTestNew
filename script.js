@@ -129,12 +129,12 @@ function createHashes() {
     }, 100);   
 }
 
-function checkCode(input) {
+function checkCode(input, checkpoint = -1) {
     let script = document.createElement('script');
     script.src = 'correctanswers.js';
     document.body.append(script);
 
     setTimeout(() => {
-        console.log(code.decryptMessage(input, getFirstHash()));  
+        console.log(code.decryptMessage(input, getNthHash(checkpoint - 1)));  
     }, 100); 
 }

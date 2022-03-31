@@ -261,8 +261,7 @@ let questionsData = [
 var cp_pos = [4,6,8,12,16];
 
 const ANS_HASH = "ec24c20bb9e91134478065ead310cfc8e3403e8c3be087d6c93399ee5b941063";
-const CHECKPOINT_HASHES = ['fbacaf416e5379ce20c063c4540a0a25b0f62a7b6adf801e6eab3bb121f09201', '9839e0aed4e6a716ec97fed6c63fa3de2a666536d792afe497b7c0039fcec620', 'b96b53e0add78d79b6384ae9ac7e1ca49b837568e9913f4022d00322e1fec615', '347d56de83085a7a965c56d3451c105955d9988f114145df337f33500cd2c399', '688dc7a8a4d915a4e04a0569d3611e0e00474c8dbde32aa45f56cec6876eb391'];
-
+const CHECKPOINT_HASHES = ['27218f4b4c6c8ac8baebb2cbf76bdb2204643d3ac9f06db275b3a9b361ffa730', '43c3a55ec32c400d44bbbc19e757fa96bf13ec7b1e6c2b05ed316e496d7a8df7', 'e44646f9c8000ccc2a296a5d708f91ef0f2205b7ddc6f94574a3bc14fcf17bc0', '78589c4d3e8237d0fd41105d57f0fdd10f624d1def0d68a97c56b1720575d6c0', '44d3c4fc88bcfadba8bc37417965a39c3c1b23a13c8ef511452a047af0e45699'];
 class Question {
 
     constructor(id, qNum, prompt, answerType, signatureTests = null, isTutorial=false, tutorialAnswer=null) {
@@ -410,6 +409,8 @@ class Checkpoint {
         this.errorNoElem = this.getNodeItem("checkpoint-error-num");
         this.errorBtn = this.getNodeItem("checkpoint-error-redirect-button");
 
+        this.codeOut = this.getNodeItem("code-out");
+
         this.errorBtn.addEventListener("click", (e) => {
             transition(quesSlideNo[this.latestErrorQues]);
         })
@@ -442,8 +443,12 @@ class Checkpoint {
             return;
         }
         let hash = sha256(val);
+        let hash2 = sha256(hash);
 
-        if (hash == CHECKPOINT_HASHES[this.number]) this.showPage(0);
+        if (hash2 == CHECKPOINT_HASHES[this.number]) {
+            this.showPage(0);
+            this.codeOut.innerHTML = code.encryptMessage(ignInput.value, hash);
+        } 
         else this.showPage(1);
     }
 
