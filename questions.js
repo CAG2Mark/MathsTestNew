@@ -286,6 +286,7 @@ class Question {
             this.updateAnswer();
             config.questionAnswers[this.id] = this.getAnswerInput();
             saveConfig();
+            if(e.key=="Enter") document.getElementById("forward").click()
         });
     }
 
