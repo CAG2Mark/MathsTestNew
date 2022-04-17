@@ -5,7 +5,7 @@ However, this project *does* provide a useful framework for creating client-side
 
 A live demo is available [here](https://mathstest.markng.com/).
 # Explanation
-This framework checks the user's answers by evaluating the answer's concatenated hashes and comparing them to the hashes of the correct answers.
+This framework checks the user's answers by evaluating their concatenated hashes and comparing them to the hashes of the correct answers.
 
 It supports three types of answers:
 * Number: Some real number.
