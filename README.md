@@ -20,7 +20,7 @@ and it checks if the entered function matches the correct function's at those po
 You need to only edit `questions.js` to create your own quiz.
 
 Firstly, modify the `questionsData` array. Each entry represents a question, and should be an object in the following format:
-```json
+```js
 {
         id: "...", // a unique ID for the question
         prompt: "...", // the prompt of the question, ie "What is 1+1"
