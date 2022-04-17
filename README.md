@@ -3,7 +3,7 @@ This is a maths test I created as an Aprils Fools joke.
 
 However, this project *does* provide a useful framework for creating client-side maths quizzes that auto-check your answers without revealing the answers themselves.
 
-A live demo is available [here](https://mathtest.markng.com/).
+A live demo is available [here](https://mathstest.markng.com/).
 # Explanation
 This framework checks the user's answers by evaluating the answer's concatenated hashes and comparing them to the hashes of the correct answers.
 
