@@ -46,9 +46,11 @@ function transition(index) {
     //$(s2).animate({left: "50%"});
 
     setTimeout(() => {
-        s2.classList.remove(s2Anim);
         s1.classList.remove(s1Anim);
         s1.classList.remove("slide-visible")
+    }, 350);
+    setTimeout(() => {
+        s2.classList.remove(s2Anim);
     }, 400);
 }
 
